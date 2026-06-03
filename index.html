@@ -144,10 +144,26 @@
     box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important;
   }
 
+  @keyframes scrollClients {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .clients-scroll {
+    animation: scrollClients 40s linear infinite;
+  }
+
+  .clients-scroll:hover {
+    animation-play-state: paused;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
+    }
+    .clients-scroll {
+      animation: none !important;
     }
   }
 </style>
@@ -191,25 +207,6 @@
   </div>
 </section>
 
-<section class="py-32 bg-surface" data-reveal>
-  <div class="max-w-container-max mx-auto px-margin-desktop">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
-      <div>
-        <span class="font-label-caps text-label-caps text-executive-gold mb-4 block">THE ADVISOR</span>
-        <h2 class="font-headline-md text-headline-md text-on-surface mb-8">Claudia: Architect of Influence</h2>
-        <div class="space-y-6 font-body-md text-body-md text-platinum-gray/70 leading-relaxed">
-          <p>With over two decades of navigating the complex intersections of leadership, culture, and strategy, Claudia has become the silent confidante for CEOs and high-performance individuals globally.</p>
-          <p>Her approach transcends traditional coaching, focusing instead on "The Quiet Power"—the ability to maintain unshakable presence and strategic discipline in environments of extreme pressure.</p>
-          <blockquote class="border-l-2 border-executive-gold pl-6 py-2 italic text-on-surface font-body-lg">"Strategic leadership isn't about the volume of your voice; it's about the precision of your silence and the clarity of your next move."</blockquote>
-        </div>
-      </div>
-      <div class="relative">
-        <div class="absolute -top-4 -left-4 w-full h-full border border-executive-gold/30"></div>
-        <img alt="Professional portrait of Claudia" class="relative z-10 w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="/claudia.jpg"/>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="py-32 executive-gradient">
   <div class="max-w-container-max mx-auto px-margin-desktop text-center mb-20">
@@ -268,13 +265,56 @@
         <div class="text-platinum-gray/50 text-sm mt-1">Managing Director, Global Strategy Group</div>
       </div>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-12 gap-y-16 opacity-40 grayscale" data-stagger>
-      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>VANGUARD</div>
-      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>MERIDIAN</div>
-      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>AXIOM</div>
-      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>NOVA</div>
-      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>EQUITY</div>
-      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>SUMMIT</div>
+  </div>
+</section>
+
+<section class="py-32 bg-surface-container/20 border-y border-subtle-slate/20 overflow-hidden" data-reveal>
+  <div class="max-w-container-max mx-auto px-margin-desktop mb-16">
+    <div class="text-center">
+      <span class="font-label-caps text-label-caps text-executive-gold mb-4 block">EXECUTIVE PARTNERSHIPS</span>
+      <h2 class="font-headline-md text-headline-md text-on-surface">Trusted by Industry Leaders</h2>
+      <p class="text-platinum-gray/60 font-body-md mt-4">Organizations that have partnered with Claudia to architect strategic clarity and executive alignment.</p>
+    </div>
+  </div>
+  <div class="relative overflow-hidden">
+    <div class="flex gap-12 pb-8 clients-scroll">
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">VANGUARD</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">MERIDIAN</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">AXIOM</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">NOVA</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">EQUITY</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">SUMMIT</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">STRATTON</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">CENTENNIAL</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">PINNACLE</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">ASCENT</span>
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">VANGUARD</span>
+      </div>
+      <div class="flex items-center justify-center font-headline-sm text-headline-sm tracking-widest text-platinum-gray whitespace-nowrap px-8 py-6 rounded-lg bg-surface-container-low/50 border border-subtle-slate/30 hover:border-executive-gold/60 hover:shadow-[0_0_20px_rgba(197,160,89,0.15)] transition-all duration-300 flex-shrink-0 group cursor-pointer">
+        <span class="group-hover:text-executive-gold transition-colors">MERIDIAN</span>
+      </div>
     </div>
   </div>
 </section>
