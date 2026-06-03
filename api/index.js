@@ -33,7 +33,36 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  fs.readFile(fileName, (err, content) => {
+  // Try to read the file, checking public folder for static assets
+  const tryFile = (filePath) => {
+    return new Promise((resolve) => {
+      fs.readFile(filePath, (err, content) => {
+        resolve({ err, content, filePath });
+      });
+    });
+  };
+
+  // If it's a static asset, try public folder first
+  const isStaticAsset = /\.(jpg|jpeg|png|css|js|gif|svg|webp)$/i.test(filePath);
+  const publicPath = isStaticAsset ? path.join(__dirname, '..', 'public', filePath) : null;
+
+  const readFile = async () => {
+    let result;
+
+    // Try public folder first for static assets
+    if (publicPath) {
+      result = await tryFile(publicPath);
+      if (!result.err) {
+        return result;
+      }
+    }
+
+    // Fall back to root
+    result = await tryFile(fileName);
+    return result;
+  };
+
+  readFile().then(({ err, content, filePath: actualPath }) => {
     if (err) {
       if (err.code === 'ENOENT') {
         res.writeHead(404);
@@ -48,6 +77,9 @@ const server = http.createServer((req, res) => {
       if (filePath.endsWith('.png')) contentType = 'image/png';
       if (filePath.endsWith('.css')) contentType = 'text/css';
       if (filePath.endsWith('.js')) contentType = 'application/javascript';
+      if (filePath.endsWith('.gif')) contentType = 'image/gif';
+      if (filePath.endsWith('.svg')) contentType = 'image/svg+xml';
+      if (filePath.endsWith('.webp')) contentType = 'image/webp';
 
       res.writeHead(200, { 'Content-Type': contentType });
       res.end(content);
