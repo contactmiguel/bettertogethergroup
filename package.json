@@ -1,0 +1,12 @@
+{
+  "name": "bettertogethergroup",
+  "version": "1.0.0",
+  "description": "Better Together Group - Executive Advisory Website",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'",
+    "start": "npx http-server -p 3000"
+  },
+  "keywords": ["executive", "advisory", "leadership"],
+  "author": "",
+  "license": "MIT"
+}
