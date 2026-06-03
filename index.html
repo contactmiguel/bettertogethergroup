@@ -157,6 +157,68 @@
     animation-play-state: paused;
   }
 
+  .document-stack {
+    perspective: 1000px;
+  }
+
+  .document-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+  }
+
+  .document-layer:nth-child(1) {
+    z-index: 3;
+    transform: translateY(0) rotateZ(-2deg);
+  }
+
+  .document-layer:nth-child(2) {
+    z-index: 2;
+    transform: translateY(12px) translateX(12px) rotateZ(1deg);
+  }
+
+  .document-layer:nth-child(3) {
+    z-index: 1;
+    transform: translateY(24px) translateX(24px) rotateZ(-1deg);
+  }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: #111415;
+    border: 2px solid #C5A059;
+    padding: 48px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #C5A059;
+    font-size: 28px;
+    cursor: pointer;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -233,27 +295,66 @@
   </div>
 </section>
 
-<section class="py-32" data-reveal>
+<section class="py-32 bg-deep-navy relative" data-reveal>
   <div class="max-w-container-max mx-auto px-margin-desktop">
-    <div class="bg-surface-container-low border border-executive-gold p-12 md:p-20 relative overflow-hidden hover:shadow-[0_0_30px_rgba(197,160,89,0.15)] transition-all duration-300">
-      <div class="absolute top-0 right-0 p-8 opacity-10"><span class="material-symbols-outlined text-[120px]">join_inner</span></div>
-      <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 class="font-headline-md text-headline-md text-executive-gold mb-6">The A.T.T.U.N.E.™ Framework</h2>
-          <p class="text-platinum-gray/80 font-body-lg mb-8 leading-relaxed">Our proprietary methodology bridges the gap between individual excellence and collective performance. It is the roadmap for the "Quiet Power" philosophy.</p>
-          <ul class="space-y-4 font-label-md text-label-md text-platinum-gray">
-            <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-executive-gold"></span><span>Analysis of Current Dynamics</span></li>
-            <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-executive-gold"></span><span>Tactical Goal Alignment</span></li>
-            <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-executive-gold"></span><span>Underlying Pattern Recognition</span></li>
-          </ul>
-        </div>
-        <div class="flex justify-center md:justify-end">
-          <button class="bg-executive-gold text-deep-navy px-10 py-5 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Download Methodology Overview</button>
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
+      <div>
+        <span class="font-label-caps text-label-caps text-executive-gold mb-6 block">OUR PROPRIETARY FRAMEWORK</span>
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-8">The A.T.T.U.N.E.™ Framework</h2>
+        <p class="text-platinum-gray/80 font-body-lg mb-8 leading-relaxed">Our proprietary methodology bridges the gap between individual excellence and collective performance. It is the roadmap for the "Quiet Power" philosophy—the ability to architect high-stakes decisions with strategic clarity and psychological precision.</p>
+        <ul class="space-y-4 mb-12 font-label-md text-label-md text-platinum-gray">
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-executive-gold flex-shrink-0"></span>
+            <span><strong>Analysis of Current Dynamics</strong> — Understanding organizational patterns and behavioral undercurrents</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-executive-gold flex-shrink-0"></span>
+            <span><strong>Tactical Goal Alignment</strong> — Translating strategic intent into executable decisions</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <span class="w-2 h-2 rounded-full bg-executive-gold flex-shrink-0"></span>
+            <span><strong>Underlying Pattern Recognition</strong> — Identifying the invisible forces driving outcomes</span>
+          </li>
+        </ul>
+        <button onclick="document.getElementById('downloadModal').classList.add('active')" class="bg-executive-gold text-deep-navy px-10 py-4 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Download Framework Guide</button>
+      </div>
+      <div class="relative h-[500px] document-stack hidden md:block">
+        <div class="document-layer" style="background-image: url('/attune_01.jpg')"></div>
+        <div class="document-layer" style="background-image: url('/attune_02.jpg')"></div>
+        <div class="document-layer" style="background-image: url('/attune_03.jpg')"></div>
       </div>
     </div>
   </div>
 </section>
+
+<div id="downloadModal" class="modal-overlay">
+  <div class="modal-content">
+    <button onclick="document.getElementById('downloadModal').classList.remove('active')" class="modal-close">&times;</button>
+    <h3 class="font-headline-sm text-headline-sm text-platinum-gray mb-2">Download the Framework</h3>
+    <p class="text-platinum-gray/60 font-body-md mb-8">Get instant access to the complete A.T.T.U.N.E.™ Framework guide.</p>
+
+    <form action="https://formspree.io/f/xyzqwert" method="POST" onsubmit="return handleFormSubmit(event)">
+      <div class="mb-6">
+        <label class="block text-platinum-gray font-label-md text-label-md mb-2">Name</label>
+        <input type="text" name="name" required class="w-full bg-surface-container-low border border-subtle-slate/30 text-platinum-gray px-4 py-3 focus:outline-none focus:border-executive-gold transition-colors" placeholder="Your name"/>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-platinum-gray font-label-md text-label-md mb-2">Email</label>
+        <input type="email" name="email" required class="w-full bg-surface-container-low border border-subtle-slate/30 text-platinum-gray px-4 py-3 focus:outline-none focus:border-executive-gold transition-colors" placeholder="your@email.com"/>
+      </div>
+
+      <div class="mb-8">
+        <label class="block text-platinum-gray font-label-md text-label-md mb-2">Phone</label>
+        <input type="tel" name="phone" required class="w-full bg-surface-container-low border border-subtle-slate/30 text-platinum-gray px-4 py-3 focus:outline-none focus:border-executive-gold transition-colors" placeholder="+1 (555) 000-0000"/>
+      </div>
+
+      <button type="submit" class="w-full bg-executive-gold text-deep-navy px-6 py-3 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Download PDF</button>
+    </form>
+
+    <p class="text-platinum-gray/40 text-xs mt-6 text-center">We respect your privacy. Your information will not be shared.</p>
+  </div>
+</div>
 
 <section class="py-24 border-t border-subtle-slate/10">
   <div class="max-w-container-max mx-auto px-margin-desktop">
@@ -386,6 +487,49 @@
       child.dataset.reveal = '';
       child.dataset.delay = i * 60;
     });
+  });
+
+  // Handle gated download form submission
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.querySelector('input[name="name"]').value;
+    const email = form.querySelector('input[name="email"]').value;
+    const phone = form.querySelector('input[name="phone"]').value;
+
+    // Submit to Formspree
+    fetch(form.action, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        phone: phone
+      })
+    }).then(response => {
+      if (response.ok) {
+        // Close modal and trigger PDF download
+        document.getElementById('downloadModal').classList.remove('active');
+        const link = document.createElement('a');
+        link.href = '/attune_flyer.pdf';
+        link.download = 'attune_framework.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    }).catch(error => console.error('Error:', error));
+
+    return false;
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('downloadModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+      this.classList.remove('active');
+    }
   });
 </script>
 </body>
