@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Better Together Group | Executive Individual Advisory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Source+Serif+4:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-fixed-variant": "#384761",
+          "on-primary-fixed": "#0d1c32",
+          "inverse-surface": "#e1e3e4",
+          "on-error": "#690005",
+          "on-primary-container": "#74829d",
+          "error-container": "#93000a",
+          "surface-container-low": "#191c1d",
+          "inverse-primary": "#515f78",
+          "error": "#ffb4ab",
+          "surface": "#111415",
+          "inverse-on-surface": "#2e3132",
+          "tertiary-fixed-dim": "#b8c7e6",
+          "surface-container": "#1d2021",
+          "secondary-container": "#604403",
+          "outline-variant": "#44474d",
+          "on-surface": "#e1e3e4",
+          "on-surface-variant": "#c5c6cd",
+          "surface-dim": "#111415",
+          "on-secondary-container": "#dab36a",
+          "on-primary": "#233148",
+          "surface-container-high": "#282a2b",
+          "outline": "#8f9097",
+          "executive-gold": "#C5A059",
+          "surface-variant": "#323536",
+          "on-tertiary": "#223149",
+          "tertiary": "#b8c7e6",
+          "secondary-fixed-dim": "#e9c176",
+          "background": "#111415",
+          "surface-tint": "#b9c7e4",
+          "on-secondary-fixed": "#261900",
+          "on-error-container": "#ffdad6",
+          "surface-container-lowest": "#0c0f10",
+          "tertiary-container": "#081930",
+          "tertiary-fixed": "#d6e3ff",
+          "deep-navy": "#050B16",
+          "primary-fixed-dim": "#b9c7e4",
+          "on-tertiary-fixed": "#0b1c33",
+          "on-secondary-fixed-variant": "#5d4201",
+          "platinum-gray": "#E2E8F0",
+          "primary-fixed": "#d6e3ff",
+          "secondary": "#e9c176",
+          "subtle-slate": "#475569",
+          "primary": "#b9c7e4",
+          "surface-bright": "#373a3b",
+          "on-background": "#e1e3e4",
+          "secondary-fixed": "#ffdea5",
+          "primary-container": "#0a192f",
+          "surface-container-highest": "#323536",
+          "on-primary-fixed-variant": "#39475f",
+          "on-tertiary-container": "#73829e",
+          "on-secondary": "#412d00"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "baseline": "8px",
+          "container-max": "1200px",
+          "gutter": "24px",
+          "margin-desktop": "64px",
+          "margin-mobile": "20px"
+        },
+        "fontFamily": {
+          "label-md": ["Open Sans"],
+          "body-lg": ["Open Sans"],
+          "display-lg-mobile": ["Source Serif 4"],
+          "headline-md": ["Source Serif 4"],
+          "display-lg": ["Source Serif 4"],
+          "label-caps": ["Open Sans"],
+          "headline-sm": ["Source Serif 4"],
+          "body-md": ["Open Sans"]
+        },
+        "fontSize": {
+          "label-md": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}],
+          "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+          "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+          "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .executive-gradient {
+    background: linear-gradient(135deg, #050B16 0%, #0a192f 100%);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes floatOrb {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50%       { transform: translate(-50%, -50%) scale(1.08); }
+  }
+
+  @keyframes expandBar {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+  }
+
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  nav.scrolled {
+    background-color: rgba(5, 11, 22, 0.98) !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body class="bg-deep-navy text-platinum-gray font-body-md selection:bg-executive-gold selection:text-deep-navy">
+
+<nav class="fixed top-0 w-full z-50 bg-deep-navy/90 backdrop-blur-md border-b border-subtle-slate/20 transition-all duration-200">
+  <div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center h-20">
+    <a href="index.html" class="cursor-pointer hover:opacity-80 transition-opacity">
+      <img src="https://images.cdn-files-a.com/uploads/8240325/400_filter_nobg_662521d99503b.png" alt="Better Together Group" class="h-12 w-auto"/>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-executive-gold border-b-2 border-executive-gold pb-1 font-label-md text-label-md transition-colors duration-300" href="index.html">Home</a>
+      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="about.html">About</a>
+      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="advisory.html">Individual Advisory</a>
+      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="#insights">Insights</a>
+      <button class="bg-executive-gold text-deep-navy px-6 py-3 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Book a Conversation</button>
+    </div>
+    <button class="md:hidden text-executive-gold"><span class="material-symbols-outlined">menu</span></button>
+  </div>
+</nav>
+
+<main class="pt-20">
+
+<section class="relative h-[921px] flex items-center overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img alt="Chess pieces on a board" class="w-full h-full object-cover opacity-30 grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN0F-qojGvG5tY8d2plOjRvagmfYVYOELctZRGXRnTVcm-iaACsWqT6kSMbGPjomW5zVRREZqzNNCp_7kBxLGVKV3aAidf1Ziz9wuZd-NerHCh6PKhmKeH2aonGTodIXws3mMpoS1laSrmQKyy1ZnE3ucDRiLYghDws-Ttm_Kd-2g8XyE3Q59IQjLHOY_FG4AAciMKt5mUxF6o1OOU6O67CDBRHagDpGGUx4wEzqAJVeHObdql99x-RUi5VjL8CQ4sH7HVMfy1t98"/>
+    <div class="absolute inset-0 bg-gradient-to-r from-deep-navy via-deep-navy/80 to-transparent"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-executive-gold/5 rounded-full blur-[120px] animate-pulse"></div>
+  </div>
+  <div class="relative z-10 max-w-container-max mx-auto px-margin-desktop">
+    <div class="max-w-2xl">
+      <span class="font-label-caps text-label-caps text-executive-gold mb-6 block tracking-[0.2em]" style="animation: fadeUp 500ms ease-out forwards;">ELITE EXECUTIVE ADVISORY</span>
+      <h1 class="font-display-lg text-display-lg text-on-surface mb-8 leading-tight" style="animation: fadeUp 600ms ease-out 100ms forwards; opacity: 0;">The individual advisory practice behind the <span class="text-executive-gold italic">A.T.T.U.N.E.™</span> Framework.</h1>
+      <p class="font-body-lg text-body-lg text-platinum-gray/80 mb-10 max-w-xl" style="animation: fadeUp 600ms ease-out 200ms forwards; opacity: 0;">Empowering global leaders to architect high-stakes decisions through strategic clarity and psychological precision.</p>
+      <div class="flex gap-4" style="animation: fadeUp 600ms ease-out 300ms forwards; opacity: 0;">
+        <button class="bg-executive-gold text-deep-navy px-8 py-4 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Explore Individual Advisory</button>
+        <button class="border border-subtle-slate/40 text-platinum-gray px-8 py-4 font-label-md text-label-md hover:bg-white/5 transition-all duration-200">Our Methodology</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-32 bg-surface" data-reveal>
+  <div class="max-w-container-max mx-auto px-margin-desktop">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+      <div>
+        <span class="font-label-caps text-label-caps text-executive-gold mb-4 block">THE ADVISOR</span>
+        <h2 class="font-headline-md text-headline-md text-on-surface mb-8">Claudia: Architect of Influence</h2>
+        <div class="space-y-6 font-body-md text-body-md text-platinum-gray/70 leading-relaxed">
+          <p>With over two decades of navigating the complex intersections of leadership, culture, and strategy, Claudia has become the silent confidante for CEOs and high-performance individuals globally.</p>
+          <p>Her approach transcends traditional coaching, focusing instead on "The Quiet Power"—the ability to maintain unshakable presence and strategic discipline in environments of extreme pressure.</p>
+          <blockquote class="border-l-2 border-executive-gold pl-6 py-2 italic text-on-surface font-body-lg">"Strategic leadership isn't about the volume of your voice; it's about the precision of your silence and the clarity of your next move."</blockquote>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="absolute -top-4 -left-4 w-full h-full border border-executive-gold/30"></div>
+        <img alt="Professional portrait of Claudia" class="relative z-10 w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8ssDLis6lOtmQveI5i5Au5rvXSmjQir2iKimCS27c6gtVmgn5x9XRyiXGsWxv7K9SZr9wk6ffMZ2Mw4In6jGKz0dSsljUmuwUKmwFoUK__Llv_WVe7grR2orwDMGl-aYDeGcSU57xttYjxkfViCi0IR_jAVvu_k32gOes1kQ_uGJb0eoKLxKvDAFQMlcQz9ZCWHN7iZYypEIta-c2KIqes_Hv3F9hTgYniAckpybqntudWvAXP5fkefUXDt7XLzEacl34rLjLDV0"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-32 executive-gradient">
+  <div class="max-w-container-max mx-auto px-margin-desktop text-center mb-20">
+    <span class="font-label-caps text-label-caps text-executive-gold mb-4 block">SOLUTIONS</span>
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-6">Decision Architecture</h2>
+    <p class="max-w-2xl mx-auto text-platinum-gray/60 font-body-md">A bespoke advisory framework designed for those who carry the weight of critical organizational outcomes.</p>
+  </div>
+  <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-3 gap-8" data-stagger>
+    <div class="bg-tertiary-navy/30 p-10 border border-subtle-slate/20 hover:border-executive-gold/40 hover:-translate-y-1 transition-all duration-200 group" data-reveal>
+      <div class="mb-8 text-executive-gold group-hover:scale-110 transition-transform duration-200"><span class="material-symbols-outlined text-4xl">architecture</span></div>
+      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Structural Clarity</h3>
+      <p class="text-platinum-gray/70 font-body-md leading-relaxed">Deconstructing complex organizational challenges into manageable, strategic variables for precise execution.</p>
+    </div>
+    <div class="bg-tertiary-navy/30 p-10 border border-subtle-slate/20 hover:border-executive-gold/40 hover:-translate-y-1 transition-all duration-200 group" data-reveal>
+      <div class="mb-8 text-executive-gold group-hover:scale-110 transition-transform duration-200"><span class="material-symbols-outlined text-4xl">psychology</span></div>
+      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Behavioral Insight</h3>
+      <p class="text-platinum-gray/70 font-body-md leading-relaxed">Understanding the psychological undercurrents of leadership and organizational dynamics to influence outcomes effectively.</p>
+    </div>
+    <div class="bg-tertiary-navy/30 p-10 border border-subtle-slate/20 hover:border-executive-gold/40 hover:-translate-y-1 transition-all duration-200 group" data-reveal>
+      <div class="mb-8 text-executive-gold group-hover:scale-110 transition-transform duration-200"><span class="material-symbols-outlined text-4xl">verified_user</span></div>
+      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">Confidential Anchor</h3>
+      <p class="text-platinum-gray/70 font-body-md leading-relaxed">Providing a secure, high-trust environment for exploring high-stakes decisions without internal institutional bias.</p>
+    </div>
+  </div>
+</section>
+
+<section class="py-32" data-reveal>
+  <div class="max-w-container-max mx-auto px-margin-desktop">
+    <div class="bg-surface-container-low border border-executive-gold p-12 md:p-20 relative overflow-hidden hover:shadow-[0_0_30px_rgba(197,160,89,0.15)] transition-all duration-300">
+      <div class="absolute top-0 right-0 p-8 opacity-10"><span class="material-symbols-outlined text-[120px]">join_inner</span></div>
+      <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="font-headline-md text-headline-md text-executive-gold mb-6">The A.T.T.U.N.E.™ Framework</h2>
+          <p class="text-platinum-gray/80 font-body-lg mb-8 leading-relaxed">Our proprietary methodology bridges the gap between individual excellence and collective performance. It is the roadmap for the "Quiet Power" philosophy.</p>
+          <ul class="space-y-4 font-label-md text-label-md text-platinum-gray">
+            <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-executive-gold"></span><span>Analysis of Current Dynamics</span></li>
+            <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-executive-gold"></span><span>Tactical Goal Alignment</span></li>
+            <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-executive-gold"></span><span>Underlying Pattern Recognition</span></li>
+          </ul>
+        </div>
+        <div class="flex justify-center md:justify-end">
+          <button class="bg-executive-gold text-deep-navy px-10 py-5 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Download Methodology Overview</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-24 border-t border-subtle-slate/10">
+  <div class="max-w-container-max mx-auto px-margin-desktop">
+    <div class="mb-24">
+      <div class="max-w-3xl mx-auto text-center" data-reveal>
+        <div class="flex justify-center mb-8"><span class="material-symbols-outlined text-executive-gold text-5xl" style="font-variation-settings: 'FILL' 1;">format_quote</span></div>
+        <p class="font-headline-sm text-headline-sm text-on-surface mb-8 italic leading-relaxed">"Claudia's ability to pinpoint the hidden friction points in an executive team is unmatched. Her advisory has been the single most impactful investment in my personal leadership journey."</p>
+        <div class="font-label-caps text-label-caps text-executive-gold">Daniel Kendzior</div>
+        <div class="text-platinum-gray/50 text-sm mt-1">Managing Director, Global Strategy Group</div>
+      </div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-x-12 gap-y-16 opacity-40 grayscale" data-stagger>
+      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>VANGUARD</div>
+      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>MERIDIAN</div>
+      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>AXIOM</div>
+      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>NOVA</div>
+      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>EQUITY</div>
+      <div class="flex items-center justify-center font-display-lg text-headline-sm tracking-widest text-platinum-gray select-none" data-reveal>SUMMIT</div>
+    </div>
+  </div>
+</section>
+
+<section class="py-32 bg-surface-container-lowest">
+  <div class="max-w-container-max mx-auto px-margin-desktop">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter" data-stagger>
+      <div class="bg-deep-navy border border-subtle-slate/10 p-10 flex flex-col justify-between hover:border-executive-gold/40 transition-all duration-200" data-reveal>
+        <p class="font-body-md text-body-md text-platinum-gray/80 italic mb-8">"An indispensable partner for high-stakes decision making. The level of confidentiality and insight is unparalleled."</p>
+        <div class="font-label-caps text-label-caps text-executive-gold">Regional CEO</div>
+      </div>
+      <div class="bg-deep-navy border border-subtle-slate/10 p-10 flex flex-col justify-between hover:border-executive-gold/40 transition-all duration-200" data-reveal>
+        <p class="font-body-md text-body-md text-platinum-gray/80 italic mb-8">"Claudia doesn't tell you what you want to hear. She tells you what you need to master. Pure strategic discipline."</p>
+        <div class="font-label-caps text-label-caps text-executive-gold">Head of Operations</div>
+      </div>
+      <div class="bg-deep-navy border border-subtle-slate/10 p-10 flex flex-col justify-between hover:border-executive-gold/40 transition-all duration-200" data-reveal>
+        <p class="font-body-md text-body-md text-platinum-gray/80 italic mb-8">"The A.T.T.U.N.E. framework transformed our executive alignment in less than six months. Highly recommend."</p>
+        <div class="font-label-caps text-label-caps text-executive-gold">Founder &amp; Chairperson</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-32 executive-gradient" data-reveal>
+  <div class="max-w-container-max mx-auto px-margin-desktop text-center">
+    <h2 class="font-headline-md text-headline-md text-on-surface mb-8">Ready to Architect Your Next Move?</h2>
+    <p class="max-w-xl mx-auto text-platinum-gray/60 font-body-lg mb-12">Private advisory consultations are strictly limited. Begin the process with a confidential introductory conversation.</p>
+    <button class="bg-executive-gold text-deep-navy px-12 py-5 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] transition-all duration-200">Book a Private Conversation</button>
+  </div>
+</section>
+
+</main>
+
+<footer class="bg-deep-navy border-t border-subtle-slate/20">
+  <div class="max-w-container-max mx-auto px-margin-desktop py-10 grid grid-cols-1 md:grid-cols-3 gap-gutter items-center">
+    <div class="flex flex-col items-center md:items-start">
+      <img src="https://images.cdn-files-a.com/uploads/8240325/400_filter_nobg_662521d99503b.png" alt="Better Together Group" class="h-10 w-auto"/>
+      <p class="text-platinum-gray/50 text-sm font-body-md mt-2">Architects of Strategic Influence.</p>
+    </div>
+    <div class="flex flex-col md:flex-row justify-center gap-6 text-center">
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="#">ATTUNE Leadership</a>
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="#">Contact</a>
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="#">Privacy Policy</a>
+    </div>
+    <div class="text-center md:text-right text-platinum-gray/40 font-body-md text-sm">© 2024 Better Together Group. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay) || 0;
+        setTimeout(() => entry.target.classList.add('revealed'), delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  document.querySelectorAll('[data-stagger]').forEach(parent => {
+    [...parent.children].forEach((child, i) => {
+      child.dataset.reveal = '';
+      child.dataset.delay = i * 60;
+    });
+  });
+</script>
+</body>
+</html>

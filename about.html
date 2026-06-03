@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About | Better Together Group</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&amp;family=Source+Serif+4:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-fixed-variant": "#384761",
+          "on-primary-fixed": "#0d1c32",
+          "inverse-surface": "#e1e3e4",
+          "on-error": "#690005",
+          "on-primary-container": "#74829d",
+          "error-container": "#93000a",
+          "surface-container-low": "#191c1d",
+          "inverse-primary": "#515f78",
+          "error": "#ffb4ab",
+          "surface": "#111415",
+          "inverse-on-surface": "#2e3132",
+          "tertiary-fixed-dim": "#b8c7e6",
+          "surface-container": "#1d2021",
+          "secondary-container": "#604403",
+          "outline-variant": "#44474d",
+          "on-surface": "#e1e3e4",
+          "on-surface-variant": "#c5c6cd",
+          "surface-dim": "#111415",
+          "on-secondary-container": "#dab36a",
+          "on-primary": "#233148",
+          "surface-container-high": "#282a2b",
+          "outline": "#8f9097",
+          "executive-gold": "#C5A059",
+          "surface-variant": "#323536",
+          "on-tertiary": "#223149",
+          "tertiary": "#b8c7e6",
+          "secondary-fixed-dim": "#e9c176",
+          "background": "#111415",
+          "surface-tint": "#b9c7e4",
+          "on-secondary-fixed": "#261900",
+          "on-error-container": "#ffdad6",
+          "surface-container-lowest": "#0c0f10",
+          "tertiary-container": "#081930",
+          "tertiary-fixed": "#d6e3ff",
+          "deep-navy": "#050B16",
+          "primary-fixed-dim": "#b9c7e4",
+          "on-tertiary-fixed": "#0b1c33",
+          "on-secondary-fixed-variant": "#5d4201",
+          "platinum-gray": "#E2E8F0",
+          "primary-fixed": "#d6e3ff",
+          "secondary": "#e9c176",
+          "subtle-slate": "#475569",
+          "primary": "#b9c7e4",
+          "surface-bright": "#373a3b",
+          "on-background": "#e1e3e4",
+          "secondary-fixed": "#ffdea5",
+          "primary-container": "#0a192f",
+          "surface-container-highest": "#323536",
+          "on-primary-fixed-variant": "#39475f",
+          "on-tertiary-container": "#73829e",
+          "on-secondary": "#412d00"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "baseline": "8px",
+          "container-max": "1200px",
+          "gutter": "24px",
+          "margin-desktop": "64px",
+          "margin-mobile": "20px"
+        },
+        "fontFamily": {
+          "label-md": ["Open Sans"],
+          "body-lg": ["Open Sans"],
+          "display-lg-mobile": ["Source Serif 4"],
+          "headline-md": ["Source Serif 4"],
+          "display-lg": ["Source Serif 4"],
+          "label-caps": ["Open Sans"],
+          "headline-sm": ["Source Serif 4"],
+          "body-md": ["Open Sans"]
+        },
+        "fontSize": {
+          "label-md": ["14px", {"lineHeight": "1.0", "fontWeight": "600"}],
+          "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "600"}],
+          "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+          "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+          "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes expandBar {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 400ms ease-out, transform 400ms ease-out;
+  }
+
+  [data-reveal].revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  nav.scrolled {
+    background-color: rgba(5, 11, 22, 0.98) !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body class="font-body-md text-body-md text-platinum-gray bg-deep-navy">
+
+<nav class="fixed top-0 w-full z-50 bg-deep-navy/90 backdrop-blur-md border-b border-subtle-slate/20 transition-all duration-200">
+  <div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center h-20">
+    <a href="index.html" class="cursor-pointer hover:opacity-80 transition-opacity">
+      <img src="https://images.cdn-files-a.com/uploads/8240325/400_filter_nobg_662521d99503b.png" alt="Better Together Group" class="h-12 w-auto"/>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="index.html">Home</a>
+      <a class="text-executive-gold border-b-2 border-executive-gold pb-1 font-label-md text-label-md transition-colors duration-300" href="about.html">About</a>
+      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="advisory.html">Individual Advisory</a>
+      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="#insights">Insights</a>
+      <button class="bg-executive-gold text-deep-navy px-6 py-3 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Book a Conversation</button>
+    </div>
+    <button class="md:hidden text-executive-gold"><span class="material-symbols-outlined">menu</span></button>
+  </div>
+</nav>
+
+<main class="pt-20">
+
+<section class="relative min-h-[819px] flex items-center bg-deep-navy overflow-hidden">
+  <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-center py-24">
+    <div class="md:col-span-7 z-10">
+      <span class="font-label-caps text-label-caps text-executive-gold mb-6 block" style="animation: fadeUp 500ms ease-out forwards;">THREE DECADES IN THE ROOM</span>
+      <h1 class="font-display-lg text-display-lg text-platinum-gray mb-8 leading-tight" style="animation: fadeUp 600ms ease-out 100ms forwards; opacity: 0;">Strategic counsel for the moments that <span class="text-executive-gold italic">define</span> leadership.</h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12" style="animation: fadeUp 600ms ease-out 200ms forwards; opacity: 0;">For 30 years, Claudia has sat beside the world's most influential leaders, navigating the complex intersection of high-stakes strategy and human behavior.</p>
+      <div class="h-1 w-24 bg-executive-gold" style="animation: expandBar 600ms ease-out 300ms forwards; transform-origin: left; transform: scaleX(0);"></div>
+    </div>
+    <div class="md:col-span-5 relative mt-12 md:mt-0" data-reveal>
+      <div class="aspect-[4/5] bg-surface-container relative z-10 border border-subtle-slate/30">
+        <img class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8UehJHfs36yxRBwxg01dsDcNEbCR--nhq1ManVsbivP8-pb3sNW6tQyt9n6v80AXJJbAchgQlkeA-TuhKMCRf-ls50KwBi_DCkMtdLFrdqiRYHLfZQ4C0d9wwh8MZPnCaXWRrUEr4Ujbmqk9pG_AtQniYIxmkPK-3BZnq1s4UGg3jvEcGsQr8kMDKemjFo7UFmgaT6qIXk_WB1jPCdZuJcWkPy-XMwPAPi8Jk4EATv5WQdaai3BIQMZqTz7zbEpaeZiV1FMBStVs" alt="Professional portrait of Claudia"/>
+      </div>
+      <div class="absolute -bottom-8 -left-8 w-64 h-64 border border-executive-gold/20 -z-0"></div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-platinum-gray text-deep-navy py-32" data-reveal>
+  <div class="max-w-3xl mx-auto px-margin-mobile md:px-0">
+    <span class="font-label-caps text-label-caps text-on-tertiary-fixed-variant mb-4 block">THE STORY</span>
+    <h2 class="font-headline-md text-headline-md mb-12">"I realized early on that the best strategy in the world fails if the culture isn't ready to receive it."</h2>
+    <div class="space-y-8 font-body-lg text-body-lg leading-relaxed text-surface-container-highest">
+      <p>It began in rooms where the air felt heavy with the weight of global decisions. As a young advisor, I watched brilliant strategies dissolve into thin air because of unspoken tensions, misaligned incentives, or a simple lack of trust at the top.</p>
+      <p>I spent twenty years in the trenches of corporate transformation before I realized my true calling wasn't just fixing processes—it was helping the humans behind those processes find their collective voice.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-surface py-32" data-reveal>
+  <div class="max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+    <div class="order-2 md:order-1">
+      <div class="aspect-video bg-deep-navy border border-subtle-slate/20 p-12 flex items-center justify-center">
+        <img class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvboNMh4qBKq31Tmgi06wCWxlTcR_hWnnqrza4X_99TdarYV8VedJtyPHAOXm9ym00oh49hm-BNBDCbSPbMHnEFS2Kb4PUdEkRoh44DHDg1SXO5zTpgMz5_nip6evkoFKTP4fsxrIRmrPSgaz5NT0P89djbl97hdMkHkLpOSlvYQjIu7D0JVlgTzkAmPJ2blsJAYJn1p71b5W3Nhro6q9pVQwJW0bjKFFMjLtW5k1c_zWhvq_812GxKQqo-MtzQuKPNuJy4ZhwJsM" alt="Boardroom"/>
+      </div>
+    </div>
+    <div class="order-1 md:order-2">
+      <h3 class="font-headline-md text-headline-md text-executive-gold mb-8">Founding Better Together</h3>
+      <div class="space-y-6 text-on-surface-variant font-body-md text-body-md">
+        <p>Better Together Group was born from a singular conviction: that leadership is not a solo performance, but a symphony of alignment. We moved away from the traditional 'expert' model to a collaborative 'partner' model.</p>
+        <p>Our practice isn't built on templated solutions. We enter each engagement with the humility of an outsider and the commitment of a stakeholder. We listen for what isn't being said.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-deep-navy py-24" data-reveal>
+  <div class="max-w-container-max mx-auto px-margin-desktop">
+    <div class="border border-executive-gold p-12 md:p-16 relative overflow-hidden group hover:bg-surface-container-low transition-colors duration-500">
+      <div class="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-12 items-center">
+        <div class="md:col-span-2">
+          <span class="font-label-caps text-label-caps text-executive-gold mb-4 block">OUR PROPRIETARY FRAMEWORK</span>
+          <h2 class="font-headline-md text-headline-md text-platinum-gray mb-6">The ATTUNE Leadership Methodology</h2>
+          <p class="text-on-surface-variant font-body-lg text-body-lg mb-8">After three decades of observation, we codified the six pillars of high-performance leadership alignment. ATTUNE is the lens through which we view every challenge.</p>
+          <a class="inline-flex items-center text-executive-gold font-label-md text-label-md hover:translate-x-2 transition-transform" href="#">EXPLORE THE FRAMEWORK <span class="material-symbols-outlined ml-2">arrow_forward</span></a>
+        </div>
+        <div class="flex justify-center md:justify-end">
+          <div class="w-48 h-48 border-2 border-executive-gold/30 rounded-full flex items-center justify-center animate-pulse">
+            <span class="font-display-lg text-headline-sm text-executive-gold">ATTUNE</span>
+          </div>
+        </div>
+      </div>
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-executive-gold/5 rounded-full blur-3xl"></div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-platinum-gray text-deep-navy py-32">
+  <div class="max-w-container-max mx-auto px-margin-desktop">
+    <div class="flex flex-col md:flex-row justify-between items-start mb-20">
+      <h2 class="font-headline-md text-headline-md max-w-md">Experience built in the trenches of global business.</h2>
+      <div class="mt-8 md:mt-0 border-l-4 border-executive-gold pl-6">
+        <p class="font-label-caps text-label-caps opacity-70">SELECT ENGAGEMENTS</p>
+        <p class="font-headline-sm text-headline-sm">Fortune 100 • Private Equity • NGOs</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12" data-stagger>
+      <div class="border-b border-subtle-slate/20 pb-8 hover:border-executive-gold/40 transition-colors duration-200" data-reveal>
+        <h4 class="font-label-caps text-label-caps text-on-tertiary-fixed-variant mb-4">BOARD ADVISORY</h4>
+        <p class="font-body-md text-body-md text-surface-container-highest">Strategic alignment for multi-national boards during executive transitions and M&amp;A integrations.</p>
+      </div>
+      <div class="border-b border-subtle-slate/20 pb-8 hover:border-executive-gold/40 transition-colors duration-200" data-reveal>
+        <h4 class="font-label-caps text-label-caps text-on-tertiary-fixed-variant mb-4">C-SUITE FACILITATION</h4>
+        <p class="font-body-md text-body-md text-surface-container-highest">Designing high-trust environments for leadership teams to tackle controversial strategic shifts.</p>
+      </div>
+      <div class="border-b border-subtle-slate/20 pb-8 hover:border-executive-gold/40 transition-colors duration-200" data-reveal>
+        <h4 class="font-label-caps text-label-caps text-on-tertiary-fixed-variant mb-4">CULTURAL TRANSFORMATION</h4>
+        <p class="font-body-md text-body-md text-surface-container-highest">Rewiring large-scale organizational behaviors to match digital-first business strategies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-deep-navy py-32 relative overflow-hidden" data-reveal>
+  <div class="max-w-3xl mx-auto px-margin-mobile text-center relative z-10">
+    <span class="font-label-caps text-label-caps text-executive-gold mb-6 block">WHERE THE WORK IS GOING</span>
+    <h2 class="font-headline-md text-headline-md text-platinum-gray mb-8">The Shift to Collective Intelligence</h2>
+    <div class="bg-surface-container/50 border border-subtle-slate/10 p-12 backdrop-blur-sm">
+      <p class="font-body-lg text-body-lg text-on-surface-variant italic leading-relaxed">"If the last decade was about the individual hero-leader, the next decade belongs to the aligned team. I've shifted my practice because the complexity of our modern world has outpaced the capacity of any single person. Honest progress now requires a different kind of 'togetherness'—one that is disciplined, rigorous, and profoundly human."</p>
+      <p class="mt-8 font-label-md text-label-md text-executive-gold">— CLAUDIA</p>
+    </div>
+  </div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-executive-gold/5 rounded-full blur-[120px] -z-0"></div>
+</section>
+
+<section class="bg-surface-container-low py-32 border-y border-subtle-slate/10" data-reveal>
+  <div class="max-w-container-max mx-auto px-margin-desktop text-center">
+    <div class="inline-block mb-8"><span class="material-symbols-outlined text-executive-gold text-4xl">format_quote</span></div>
+    <blockquote class="font-display-lg text-headline-sm md:text-headline-md text-platinum-gray mb-12 max-w-4xl mx-auto leading-snug">"Better Together Group didn't just give us a strategy; they gave us a language to speak to one another again. Claudia has an uncanny ability to find the truth in the middle of a room."</blockquote>
+    <div>
+      <p class="font-label-md text-label-md text-executive-gold uppercase tracking-widest mb-1">Thilene Samuel</p>
+      <p class="font-label-caps text-label-caps text-on-surface-variant">CHIEF OPERATING OFFICER, GLOBAL LOGISTICS CORP</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-deep-navy py-32" data-reveal>
+  <div class="max-w-container-max mx-auto px-margin-desktop">
+    <div class="bg-surface border border-executive-gold/20 p-16 md:p-24 flex flex-col items-center text-center hover:border-executive-gold/40 transition-colors duration-200">
+      <h2 class="font-display-lg text-display-lg text-platinum-gray mb-8">Shall we begin?</h2>
+      <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">Strategic alignment doesn't happen by accident. It requires intention, courage, and a trusted partner to guide the process.</p>
+      <button class="bg-executive-gold text-deep-navy px-12 py-4 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">BOOK A PRIVATE CONVERSATION</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="bg-deep-navy border-t border-subtle-slate/20">
+  <div class="max-w-container-max mx-auto px-margin-desktop py-10 grid grid-cols-1 md:grid-cols-3 gap-gutter items-center">
+    <div class="flex flex-col items-center md:items-start">
+      <img src="https://images.cdn-files-a.com/uploads/8240325/400_filter_nobg_662521d99503b.png" alt="Better Together Group" class="h-10 w-auto"/>
+      <p class="text-platinum-gray/50 text-sm font-body-md mt-2">Architects of Strategic Influence.</p>
+    </div>
+    <div class="flex flex-col md:flex-row justify-center gap-6 text-center">
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="#">ATTUNE Leadership</a>
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="#">Contact</a>
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="#">Privacy Policy</a>
+    </div>
+    <div class="text-center md:text-right text-platinum-gray/40 font-body-md text-sm">© 2024 Better Together Group. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay) || 0;
+        setTimeout(() => entry.target.classList.add('revealed'), delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  document.querySelectorAll('[data-stagger]').forEach(parent => {
+    [...parent.children].forEach((child, i) => {
+      child.dataset.reveal = '';
+      child.dataset.delay = i * 60;
+    });
+  });
+</script>
+</body>
+</html>

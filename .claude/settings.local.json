@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\conta\\\\OneDrive\\\\Miguel Stuff\\\\My Claude Code\\\\BetterTogetherGroup website\\\\Better Together Group website\" -Recurse)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(dir /S)",
+      "Bash(mkdir \"C:\\\\Users\\\\conta\\\\OneDrive\\\\Miguel Stuff\\\\My Claude Code\\\\BetterTogetherGroup website\\\\Attune site\")",
+      "Bash(Move-Item \"C:\\\\Users\\\\conta\\\\OneDrive\\\\Miguel Stuff\\\\My Claude Code\\\\BetterTogetherGroup website\\\\Better Together Group website\\\\*.html\" \"C:\\\\Users\\\\conta\\\\OneDrive\\\\Miguel Stuff\\\\My Claude Code\\\\BetterTogetherGroup website\\\\Attune site\\\\\" && Move-Item \"C:\\\\Users\\\\conta\\\\OneDrive\\\\Miguel Stuff\\\\My Claude Code\\\\BetterTogetherGroup website\\\\Better Together Group website\\\\input assets\" \"C:\\\\Users\\\\conta\\\\OneDrive\\\\Miguel Stuff\\\\My Claude Code\\\\BetterTogetherGroup website\\\\Attune site\\\\\")",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Read(//c/Users/conta/OneDrive/Miguel Stuff/My Claude Code/.claude/skills/ui-ux-pro-max/**)",
+      "Bash(python scripts/search.py \"executive leadership advisory premium dark luxury\" --design-system -p \"ATTUNE Leadership\" -f markdown)",
+      "Bash(python scripts/search.py \"editorial luxury dark navy gold\" --domain style -n 4)",
+      "Bash(python scripts/search.py \"luxury editorial serif premium\" --domain typography -n 3)",
+      "Bash(python scripts/search.py \"executive leadership advisory premium dark luxury C-suite\" --design-system -p \"ATTUNE Leadership\" -f markdown)",
+      "Bash(find \"C:/Users/conta/Downloads\" \"C:/Users/conta/OneDrive\" -name \"Attune_logo.png\" 2>/dev/null)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "PowerShell(vercel --version 2>&1)"
+    ]
+  }
+}

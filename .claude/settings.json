@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\\\Users\\\\conta\\\\OneDrive\\\\Miguel Stuff\\\\My Claude Code\\\\BetterTogetherGroup website\\\\Better Together Group website\\\\\" | grep -E \"\\\\.html\")",
+      "Bash(ls -la \"C:\\\\Users\\\\conta\\\\OneDrive\\\\Miguel Stuff\\\\My Claude Code\\\\BetterTogetherGroup website\\\\Better Together Group website\\\\\"*.html)",
+      "Read(//c/Users/conta/OneDrive/Miguel Stuff/My Claude Code/BetterTogetherGroup website/**)",
+      "WebFetch(domain:www.bettertogethergroup.co)",
+      "Bash(git init *)"
+    ]
+  }
+}
