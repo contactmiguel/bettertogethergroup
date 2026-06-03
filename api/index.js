@@ -13,13 +13,16 @@ const server = http.createServer((req, res) => {
   // Determine if it's a static asset
   const isStatic = /\.(jpg|jpeg|png|css|js|gif|svg|webp|ico)$/i.test(urlPath);
 
+  // Remove leading slash for path joining
+  const cleanPath = urlPath.replace(/^\//, '');
+
   // Build file path - check public folder first for static assets
   let filePath;
   if (isStatic) {
-    filePath = path.join(__dirname, '..', 'public', urlPath);
+    filePath = path.join(__dirname, '..', 'public', cleanPath);
   } else {
     // For HTML, add .html extension if needed
-    let htmlPath = urlPath;
+    let htmlPath = cleanPath;
     if (!htmlPath.endsWith('.html')) {
       htmlPath += '.html';
     }
