@@ -20,9 +20,10 @@
   function openBookingModal() {
     const modal = document.getElementById('booking-modal')
     if (!modal) return
+    const isAlreadyOpen = !modal.classList.contains('hidden')
     modal.classList.remove('hidden')
-    showStep1()
-    const panel = modal.querySelector('[role="document"], .relative')
+    if (!isAlreadyOpen) showStep1()
+    const panel = modal.querySelector('[tabindex="-1"]')
     if (panel) panel.focus()
   }
 
@@ -67,7 +68,7 @@
             ].map(opt => `
             <label class="flex items-start gap-3 cursor-pointer group">
               <input type="checkbox" name="bm-friction" value="${opt}"
-                class="mt-0.5 accent-[#C5A059] w-4 h-4 flex-shrink-0" />
+                class="mt-0.5 accent-executive-gold w-4 h-4 flex-shrink-0" />
               <span class="text-on-surface-variant font-body-md text-body-md group-hover:text-on-surface transition-colors">${opt}</span>
             </label>`).join('')}
           </div>
@@ -87,7 +88,7 @@
             ].map(opt => `
             <label class="flex items-center gap-3 cursor-pointer group">
               <input type="radio" name="bm-intent" value="${opt.value}"
-                class="accent-[#C5A059] w-4 h-4 flex-shrink-0" />
+                class="accent-executive-gold w-4 h-4 flex-shrink-0" />
               <span class="text-on-surface-variant font-body-md text-body-md group-hover:text-on-surface transition-colors">${opt.label}</span>
             </label>`).join('')}
           </div>
