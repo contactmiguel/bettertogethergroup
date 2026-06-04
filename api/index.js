@@ -11,7 +11,7 @@ const server = http.createServer((req, res) => {
   }
 
   // Determine if it's a static asset
-  const isStatic = /\.(jpg|jpeg|png|css|js|gif|svg|webp|ico)$/i.test(urlPath);
+  const isStatic = /\.(jpg|jpeg|png|css|js|gif|svg|webp|ico|pdf)$/i.test(urlPath);
 
   // Remove leading slash for path joining
   const cleanPath = urlPath.replace(/^\//, '');
@@ -78,6 +78,7 @@ function sendResponse(res, filePath, content) {
   if (filePath.endsWith('.svg')) contentType = 'image/svg+xml';
   if (filePath.endsWith('.webp')) contentType = 'image/webp';
   if (filePath.endsWith('.ico')) contentType = 'image/x-icon';
+  if (filePath.endsWith('.pdf')) contentType = 'application/pdf';
 
   res.writeHead(200, { 'Content-Type': contentType });
   res.end(content);
