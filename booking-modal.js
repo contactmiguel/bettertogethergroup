@@ -35,7 +35,9 @@
     if (!modal) return
     modal.classList.add('hidden')
     document.body.style.overflow = ''
-    // Restore panel height cap for next open
+    // Restore vertical centering for Step 1 on next open
+    modal.classList.add('items-center')
+    modal.classList.remove('items-start', 'py-4')
     const panel = document.getElementById('booking-modal-panel')
     if (panel) {
       panel.classList.add('max-h-[90vh]')
@@ -152,11 +154,17 @@
   function showStep2(intent) {
     _step2Intent = intent
 
-    // Expand panel for Calendly — remove height cap so the full widget renders
+    // Anchor modal to top so tall Calendly content doesn't clip above the viewport
+    const modal = document.getElementById('booking-modal')
+    if (modal) {
+      modal.classList.remove('items-center')
+      modal.classList.add('items-start', 'py-4')
+    }
+    // Restore height cap so panel scrolls internally rather than overflowing
     const panel = document.getElementById('booking-modal-panel')
     if (panel) {
-      panel.classList.remove('max-h-[90vh]')
-      panel.classList.add('my-4')
+      panel.classList.remove('my-4')
+      panel.classList.add('max-h-[90vh]')
     }
 
     // Pre-booking: just confirmation text + Calendly embed
