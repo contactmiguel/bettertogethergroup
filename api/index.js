@@ -10,6 +10,41 @@ const server = http.createServer((req, res) => {
     urlPath = '/index.html';
   }
 
+  // POST /api/intake — intake form submission
+  if (req.method === 'POST' && urlPath === '/api/intake') {
+    let body = ''
+    req.on('data', chunk => { body += chunk.toString() })
+    req.on('end', () => {
+      let payload
+      try {
+        payload = JSON.parse(body)
+      } catch {
+        res.writeHead(400, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ ok: false, error: 'invalid JSON' }))
+        return
+      }
+
+      const { validateIntake, buildIntakeRecord } = require('./intake-handler')
+      const validation = validateIntake(payload)
+      if (!validation.ok) {
+        res.writeHead(422, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify(validation))
+        return
+      }
+
+      const record = buildIntakeRecord(payload)
+      console.log('[intake]', JSON.stringify(record, null, 2))
+
+      // TODO(CRM_INTEGRATION): replace console.log with CRM/email push
+      // Notification email: claudia.beck@bettertogethergroup.co
+      // Tag: source = "solo site — Calendly intake"
+
+      res.writeHead(200, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ ok: true }))
+    })
+    return
+  }
+
   // Determine if it's a static asset
   const isStatic = /\.(jpg|jpeg|png|css|js|gif|svg|webp|ico|pdf)$/i.test(urlPath);
 
