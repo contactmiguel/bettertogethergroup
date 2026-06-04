@@ -1,6 +1,6 @@
 const VALID_INTENTS = ['personal', 'team', 'both']
 
-export function validateIntake(payload) {
+function validateIntake(payload) {
   if (!payload.role || !String(payload.role).trim()) {
     return { ok: false, error: 'role is required' }
   }
@@ -13,15 +13,19 @@ export function validateIntake(payload) {
   return { ok: true }
 }
 
-export function buildIntakeRecord(payload) {
+function buildIntakeRecord(payload) {
   return {
-    role: payload.role || '',
-    organization: payload.organization || '',
-    whatIsNotWorking: payload.whatIsNotWorking || '',
-    frictionDimensions: Array.isArray(payload.frictionDimensions) ? payload.frictionDimensions : [],
-    whatHaveYouTried: payload.whatHaveYouTried || '',
+    role: String(payload.role || '').trim(),
+    organization: String(payload.organization || '').trim(),
+    whatIsNotWorking: String(payload.whatIsNotWorking || '').trim(),
+    frictionDimensions: Array.isArray(payload.frictionDimensions)
+      ? payload.frictionDimensions.filter(d => d && String(d).trim())
+      : [],
+    whatHaveYouTried: String(payload.whatHaveYouTried || '').trim(),
     intent: payload.intent,
     source: 'solo site — Calendly intake',
     timestamp: new Date().toISOString(),
   }
 }
+
+module.exports = { validateIntake, buildIntakeRecord }
