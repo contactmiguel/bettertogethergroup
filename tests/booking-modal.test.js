@@ -53,3 +53,34 @@ describe('modal scaffold', () => {
     expect(modal.classList.contains('hidden')).toBe(false)
   })
 })
+
+describe('step 1 — intake form', () => {
+  beforeEach(() => {
+    window.openBookingModal()
+  })
+
+  it('renders the Quick intake. headline', () => {
+    expect(document.getElementById('booking-modal-body').innerHTML).toContain('Quick intake.')
+  })
+
+  it('renders the verbatim intro copy', () => {
+    const body = document.getElementById('booking-modal-body').innerHTML
+    expect(body).toContain('Effective executive advisory requires mutual fit.')
+  })
+
+  it('Continue button is disabled when required fields are empty', () => {
+    const btn = document.getElementById('bm-submit')
+    expect(btn.disabled).toBe(true)
+  })
+
+  it('Continue button enables when role + whatIsNotWorking + intent are filled', () => {
+    document.getElementById('bm-role').value = 'CEO'
+    document.getElementById('bm-role').dispatchEvent(new Event('input'))
+    document.getElementById('bm-what-not-working').value = 'Trust issues'
+    document.getElementById('bm-what-not-working').dispatchEvent(new Event('input'))
+    document.querySelector('[name="bm-intent"][value="personal"]').checked = true
+    document.querySelector('[name="bm-intent"][value="personal"]').dispatchEvent(new Event('change'))
+    const btn = document.getElementById('bm-submit')
+    expect(btn.disabled).toBe(false)
+  })
+})
