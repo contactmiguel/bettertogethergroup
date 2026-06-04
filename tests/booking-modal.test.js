@@ -126,34 +126,43 @@ describe('step 2 — confirmation + calendly', () => {
     )
   })
 
-  it('does NOT show team door for personal intent', async () => {
+  it('does NOT show team door for personal intent after booking confirmed', async () => {
     document.getElementById('bm-form').dispatchEvent(new Event('submit', { bubbles: true }))
     await new Promise(r => setTimeout(r, 0))
-    expect(document.getElementById('bm-team-door')).toBeNull()
+    // Simulate Calendly event_scheduled
+    window.dispatchEvent(new MessageEvent('message', { data: { event: 'calendly.event_scheduled' } }))
+    await new Promise(r => setTimeout(r, 0))
+    expect(document.querySelector('[class*="bm-team-door"], #bm-team-door, [id="bm-team-door"]')).toBeNull()
   })
 
-  it('shows team door for team intent', async () => {
+  it('shows team door for team intent after booking confirmed', async () => {
     document.querySelector('[name="bm-intent"][value="personal"]').checked = false
     document.querySelector('[name="bm-intent"][value="team"]').checked = true
     document.getElementById('bm-form').dispatchEvent(new Event('submit', { bubbles: true }))
     await new Promise(r => setTimeout(r, 0))
-    expect(document.getElementById('bm-team-door')).not.toBeNull()
+    window.dispatchEvent(new MessageEvent('message', { data: { event: 'calendly.event_scheduled' } }))
+    await new Promise(r => setTimeout(r, 0))
+    expect(document.getElementById('bm-post-booking').innerHTML).toContain('attuneleadership.vercel.app')
   })
 
-  it('shows team door for both intent', async () => {
+  it('shows team door for both intent after booking confirmed', async () => {
     document.querySelector('[name="bm-intent"][value="personal"]').checked = false
     document.querySelector('[name="bm-intent"][value="both"]').checked = true
     document.getElementById('bm-form').dispatchEvent(new Event('submit', { bubbles: true }))
     await new Promise(r => setTimeout(r, 0))
-    expect(document.getElementById('bm-team-door')).not.toBeNull()
+    window.dispatchEvent(new MessageEvent('message', { data: { event: 'calendly.event_scheduled' } }))
+    await new Promise(r => setTimeout(r, 0))
+    expect(document.getElementById('bm-post-booking').innerHTML).toContain('attuneleadership.vercel.app')
   })
 
-  it('team door link has correct UTM-tagged href', async () => {
+  it('team door link has correct UTM-tagged href after booking confirmed', async () => {
     document.querySelector('[name="bm-intent"][value="personal"]').checked = false
     document.querySelector('[name="bm-intent"][value="team"]').checked = true
     document.getElementById('bm-form').dispatchEvent(new Event('submit', { bubbles: true }))
     await new Promise(r => setTimeout(r, 0))
-    const link = document.querySelector('#bm-team-door a')
+    window.dispatchEvent(new MessageEvent('message', { data: { event: 'calendly.event_scheduled' } }))
+    await new Promise(r => setTimeout(r, 0))
+    const link = document.querySelector('#bm-post-booking a')
     expect(link.href).toContain('attuneleadership.vercel.app')
     expect(link.href).toContain('utm_source=btg-site')
     expect(link.href).toContain('utm_medium=booking-modal')

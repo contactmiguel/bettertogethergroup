@@ -1,4 +1,6 @@
 (function () {
+  var _step2Intent = null  // retained across booking flow for post-booking view
+
   const TEMPLATE = `
 <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-headline" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4">
   <div id="booking-modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
@@ -148,7 +150,7 @@
   }
 
   function showStep2(intent) {
-    const showTeamDoor = intent === 'team' || intent === 'both'
+    _step2Intent = intent
 
     // Expand panel for Calendly — remove height cap so the full widget renders
     const panel = document.getElementById('booking-modal-panel')
@@ -157,29 +159,55 @@
       panel.classList.add('my-4')
     }
 
+    // Pre-booking: just confirmation text + Calendly embed
+    // Team door and close CTA appear only after booking is confirmed (showPostBooking)
     document.getElementById('booking-modal-body').innerHTML =
       '<p id="booking-modal-headline" class="text-on-surface font-body-lg text-body-lg mb-6" style="font-family:\'Source Serif 4\',serif">' +
       'Thanks for providing clarity. We look forward to a productive session. Let\'s find a time.' +
       '</p>' +
-      (showTeamDoor
-        ? '<div id="bm-team-door" class="mb-6 pb-6 border-b border-outline-variant">' +
-          '<p class="text-on-surface-variant font-body-md text-body-md">' +
-          'Also thinking about your team? ' +
-          '<a href="https://attuneleadership.vercel.app?utm_source=btg-site&utm_medium=booking-modal&utm_campaign=team-door"' +
-          ' target="_blank" rel="noopener noreferrer"' +
-          ' class="text-executive-gold hover:brightness-110 transition-colors">' +
-          'Explore the A.T.T.U.N.E.™ team assessment →' +
-          '</a></p></div>'
-        : '') +
       '<div id="bm-calendly-container" style="min-width:320px;height:700px;"></div>' +
-      '<div class="mt-6 text-center">' +
-      '<button id="bm-close-btn" type="button" onclick="document.getElementById(\'booking-modal-close\').click()"' +
-      ' class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors underline underline-offset-2 cursor-pointer">' +
-      'Close this window' +
-      '</button></div>'
+      '<div id="bm-post-booking" class="mt-6"></div>'
 
     loadCalendly('https://calendly.com/claudiabeck/30-min-check-in')
     listenForBookingConfirmed()
+  }
+
+  function showPostBooking() {
+    // Collapse the Calendly iframe — it already shows "You are scheduled!"
+    const container = document.getElementById('bm-calendly-container')
+    if (container) {
+      container.style.height = '160px'
+      container.style.minHeight = '0'
+      container.style.overflow = 'hidden'
+      container.style.opacity = '0.6'
+      container.style.pointerEvents = 'none'
+    }
+
+    const teamDoorHTML = (_step2Intent === 'team' || _step2Intent === 'both')
+      ? '<div class="mb-6 pb-6 border-b border-outline-variant">' +
+        '<p class="text-on-surface-variant font-body-md text-body-md">' +
+        'Also thinking about your team? ' +
+        '<a href="https://attuneleadership.vercel.app?utm_source=btg-site&utm_medium=booking-modal&utm_campaign=team-door"' +
+        ' target="_blank" rel="noopener noreferrer"' +
+        ' class="text-executive-gold hover:brightness-110 transition-colors">' +
+        'Explore the A.T.T.U.N.E.™ team assessment →' +
+        '</a></p></div>'
+      : ''
+
+    const postBooking = document.getElementById('bm-post-booking')
+    if (postBooking) {
+      postBooking.innerHTML =
+        teamDoorHTML +
+        '<div class="text-center">' +
+        '<button type="button" onclick="document.getElementById(\'booking-modal-close\').click()"' +
+        ' class="bg-executive-gold text-deep-navy px-10 py-4 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">' +
+        'Close this window' +
+        '</button></div>'
+    }
+
+    // Scroll panel to top so user sees the post-booking content
+    const panel = document.getElementById('booking-modal-panel')
+    if (panel) panel.scrollTop = 0
   }
 
   function loadCalendly(url) {
@@ -207,12 +235,7 @@
   function listenForBookingConfirmed() {
     function onMessage(e) {
       if (e.data && e.data.event === 'calendly.event_scheduled') {
-        const btn = document.getElementById('bm-close-btn')
-        if (btn) {
-          btn.textContent = 'Your session is booked — close this window'
-          btn.classList.remove('text-on-surface-variant')
-          btn.classList.add('text-executive-gold', 'font-semibold')
-        }
+        showPostBooking()
         window.removeEventListener('message', onMessage)
       }
     }
