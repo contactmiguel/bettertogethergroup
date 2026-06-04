@@ -45,28 +45,28 @@
 
   function showStep1() {
     document.getElementById('booking-modal-body').innerHTML = `
-      <h2 id="booking-modal-headline" class="font-display-sm text-display-sm text-on-surface mb-3" style="font-family:'Source Serif 4',serif">Quick intake.</h2>
+      <h2 id="booking-modal-headline" class="text-xl font-bold text-on-surface mb-3 tracking-tight">Quick intake.</h2>
       <p class="text-on-surface-variant font-body-md text-body-md mb-8">Effective executive advisory requires mutual fit. Tell us about you and the context of your inquiry.</p>
       <form id="bm-form" novalidate class="space-y-7">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label class="block text-on-surface-variant font-label-md text-label-md mb-1" for="bm-role">Current role <span class="text-executive-gold">*</span></label>
+            <label class="block text-on-surface font-body-lg font-semibold mb-1" for="bm-role">Current role <span class="text-executive-gold">*</span></label>
             <input id="bm-role" type="text" placeholder="e.g. Chief Operating Officer"
               class="w-full bg-surface-container-high border border-outline-variant text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-executive-gold transition-colors" />
           </div>
           <div>
-            <label class="block text-on-surface-variant font-label-md text-label-md mb-1" for="bm-organization">Organization</label>
+            <label class="block text-on-surface font-body-lg font-semibold mb-1" for="bm-organization">Organization</label>
             <input id="bm-organization" type="text" placeholder="Company or institution"
               class="w-full bg-surface-container-high border border-outline-variant text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-executive-gold transition-colors" />
           </div>
         </div>
         <div>
-          <label class="block text-on-surface-variant font-label-md text-label-md mb-1" for="bm-what-not-working">What's not working — and what do you suspect is really behind it? <span class="text-executive-gold">*</span></label>
+          <label class="block text-on-surface font-body-lg font-semibold mb-2" for="bm-what-not-working">What's not working — and what do you suspect is really behind it? <span class="text-executive-gold">*</span></label>
           <textarea id="bm-what-not-working" rows="4" placeholder="Be candid."
             class="w-full bg-surface-container-high border border-outline-variant text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-executive-gold transition-colors resize-none"></textarea>
         </div>
         <div>
-          <p class="text-on-surface-variant font-label-md text-label-md mb-3">Where do you feel the most friction right now? <span class="text-platinum-gray/40 font-normal">(Select all that apply)</span></p>
+          <p class="text-on-surface font-body-lg font-semibold mb-3">Where do you feel the most friction right now? <span class="text-platinum-gray/40 text-sm font-normal">(Select all that apply)</span></p>
           <div class="space-y-2">
             ${[
               'Reacting before I see the full picture clearly',
@@ -84,12 +84,12 @@
           </div>
         </div>
         <div>
-          <label class="block text-on-surface-variant font-label-md text-label-md mb-1" for="bm-tried">What have you already tried, and why hasn't it been enough?</label>
+          <label class="block text-on-surface font-body-lg font-semibold mb-2" for="bm-tried">What have you already tried, and why hasn't it been enough?</label>
           <textarea id="bm-tried" rows="3" placeholder="Coaching, leadership programs, restructuring…"
             class="w-full bg-surface-container-high border border-outline-variant text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-executive-gold transition-colors resize-none"></textarea>
         </div>
         <div>
-          <p class="text-on-surface-variant font-label-md text-label-md mb-3">Is this primarily a personal leadership challenge, or does it involve your team's dynamics? <span class="text-executive-gold">*</span></p>
+          <p class="text-on-surface font-body-lg font-semibold mb-3">Is this primarily a personal leadership challenge, or does it involve your team's dynamics? <span class="text-executive-gold">*</span></p>
           <div class="space-y-2">
             ${[
               { value: 'personal', label: 'Personal — this is mine to navigate' },
