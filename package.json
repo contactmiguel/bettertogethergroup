@@ -4,9 +4,16 @@
   "description": "Better Together Group - Executive Advisory Website",
   "scripts": {
     "build": "echo 'Static site - no build needed'",
-    "start": "npx http-server -p 3000"
+    "start": "node api/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": ["executive", "advisory", "leadership"],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^2.0.0",
+    "@vitest/coverage-v8": "^2.0.0",
+    "jsdom": "^24.0.0"
+  }
 }
