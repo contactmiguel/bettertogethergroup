@@ -120,7 +120,7 @@
   function handleStep1Submit(e) {
     e.preventDefault()
 
-    var payload = {
+    const payload = {
       role: document.getElementById('bm-role').value.trim(),
       organization: document.getElementById('bm-organization').value.trim(),
       whatIsNotWorking: document.getElementById('bm-what-not-working').value.trim(),
@@ -140,10 +140,10 @@
   }
 
   function showStep2(intent) {
-    var showTeamDoor = intent === 'team' || intent === 'both'
+    const showTeamDoor = intent === 'team' || intent === 'both'
 
     document.getElementById('booking-modal-body').innerHTML =
-      '<p class="text-on-surface font-body-lg text-body-lg mb-8" style="font-family:\'Source Serif 4\',serif">' +
+      '<p id="booking-modal-headline" class="text-on-surface font-body-lg text-body-lg mb-8" style="font-family:\'Source Serif 4\',serif">' +
       'Thanks for providing clarity. We look forward to a productive session. Let\'s find a time.' +
       '</p>' +
       '<div id="bm-calendly-container" style="min-height:630px"></div>' +
@@ -163,22 +163,21 @@
 
   function loadCalendly(url) {
     if (window.Calendly) {
-      window.Calendly.initInlineWidget({
-        url: url,
-        parentElement: document.getElementById('bm-calendly-container'),
-      })
+      const container = document.getElementById('bm-calendly-container')
+      if (!container) return
+      window.Calendly.initInlineWidget({ url: url, parentElement: container })
       return
     }
-    var script = document.createElement('script')
+    if (document.querySelector('script[src*="calendly"]')) return
+    const script = document.createElement('script')
     script.src = 'https://assets.calendly.com/assets/external/widget.js'
     script.onload = function() {
-      window.Calendly.initInlineWidget({
-        url: url,
-        parentElement: document.getElementById('bm-calendly-container'),
-      })
+      const container = document.getElementById('bm-calendly-container')
+      if (!container) return
+      window.Calendly.initInlineWidget({ url: url, parentElement: container })
     }
     document.head.appendChild(script)
-    var link = document.createElement('link')
+    const link = document.createElement('link')
     link.rel = 'stylesheet'
     link.href = 'https://assets.calendly.com/assets/external/widget.css'
     document.head.appendChild(link)
