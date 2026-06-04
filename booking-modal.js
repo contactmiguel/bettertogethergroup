@@ -185,13 +185,12 @@
 
     const teamDoorHTML = (_step2Intent === 'team' || _step2Intent === 'both')
       ? '<div class="mb-6 pb-6 border-b border-outline-variant">' +
-        '<p class="text-on-surface-variant font-body-md text-body-md">' +
-        'Also thinking about your team? ' +
+        '<p class="text-on-surface font-body-lg text-body-lg mb-2">Also thinking about your team?</p>' +
         '<a href="https://attuneleadership.vercel.app?utm_source=btg-site&utm_medium=booking-modal&utm_campaign=team-door"' +
         ' target="_blank" rel="noopener noreferrer"' +
         ' class="text-executive-gold hover:brightness-110 transition-colors">' +
         'Explore the A.T.T.U.N.E.™ team assessment →' +
-        '</a></p></div>'
+        '</a></div>'
       : ''
 
     const postBooking = document.getElementById('bm-post-booking')
