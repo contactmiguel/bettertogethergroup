@@ -22,6 +22,7 @@
     if (!modal) return
     const isAlreadyOpen = !modal.classList.contains('hidden')
     modal.classList.remove('hidden')
+    document.body.style.overflow = 'hidden'
     if (!isAlreadyOpen) showStep1()
     const panel = modal.querySelector('[tabindex="-1"]')
     if (panel) panel.focus()
@@ -31,6 +32,7 @@
     const modal = document.getElementById('booking-modal')
     if (!modal) return
     modal.classList.add('hidden')
+    document.body.style.overflow = ''
   }
 
   function showStep1() {
