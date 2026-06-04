@@ -493,34 +493,27 @@
   function handleFormSubmit(event) {
     event.preventDefault();
     const form = event.target;
-    const name = form.querySelector('input[name="name"]').value;
-    const email = form.querySelector('input[name="email"]').value;
-    const phone = form.querySelector('input[name="phone"]').value;
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
+    const phone = form.querySelector('input[name="phone"]').value.trim();
 
-    // Submit to Formspree
-    fetch(form.action, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        phone: phone
-      })
-    }).then(response => {
-      if (response.ok) {
-        // Close modal and trigger PDF download
-        document.getElementById('downloadModal').classList.remove('active');
-        const link = document.createElement('a');
-        link.href = '/attune_flyer.pdf';
-        link.download = 'attune_framework.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      }
-    }).catch(error => console.error('Error:', error));
+    // Basic validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!name || !emailRegex.test(email) || !phone) {
+      return false;
+    }
+
+    // Close modal and trigger PDF download
+    document.getElementById('downloadModal').classList.remove('active');
+    const link = document.createElement('a');
+    link.href = '/attune_flyer.pdf';
+    link.download = 'attune_framework.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Fire-and-forget to Formspree (add real endpoint later)
+    // fetch('https://formspree.io/f/YOUR_ID', { method: 'POST', ... })
 
     return false;
   }
