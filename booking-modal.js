@@ -40,8 +40,8 @@
     modal.classList.remove('items-start', 'py-4')
     const panel = document.getElementById('booking-modal-panel')
     if (panel) {
-      panel.classList.add('max-h-[90vh]')
-      panel.classList.remove('my-4')
+      panel.classList.add('max-h-[90vh]', 'overflow-y-auto')
+      panel.classList.remove('my-4', 'overflow-hidden')
     }
   }
 
@@ -154,17 +154,17 @@
   function showStep2(intent) {
     _step2Intent = intent
 
-    // Anchor modal to top so tall Calendly content doesn't clip above the viewport
+    // Anchor modal to top and suppress the panel's own scrollbar —
+    // only the Calendly iframe's internal scrollbar should be visible
     const modal = document.getElementById('booking-modal')
     if (modal) {
       modal.classList.remove('items-center')
       modal.classList.add('items-start', 'py-4')
     }
-    // Restore height cap so panel scrolls internally rather than overflowing
     const panel = document.getElementById('booking-modal-panel')
     if (panel) {
-      panel.classList.remove('my-4')
-      panel.classList.add('max-h-[90vh]')
+      panel.classList.remove('my-4', 'overflow-y-auto')
+      panel.classList.add('max-h-[90vh]', 'overflow-hidden')
     }
 
     // Pre-booking: just confirmation text + Calendly embed
@@ -173,7 +173,7 @@
       '<p id="booking-modal-headline" class="text-on-surface font-body-lg text-body-lg mb-6" style="font-family:\'Source Serif 4\',serif">' +
       'Thanks for providing clarity. We look forward to a productive session. Let\'s find a time.' +
       '</p>' +
-      '<div id="bm-calendly-container" style="min-width:320px;height:700px;"></div>' +
+      '<div id="bm-calendly-container" style="min-width:320px;height:calc(90vh - 180px);min-height:500px;"></div>' +
       '<div id="bm-post-booking" class="mt-6"></div>'
 
     loadCalendly('https://calendly.com/claudiabeck/30-min-check-in')
