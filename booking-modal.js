@@ -171,9 +171,15 @@
           ' class="text-executive-gold hover:brightness-110 transition-colors">' +
           'Explore the A.T.T.U.N.E.™ team assessment →' +
           '</a></p></div>'
-        : '')
+        : '') +
+      '<div class="mt-6 text-center">' +
+      '<button id="bm-close-btn" type="button" onclick="document.getElementById(\'booking-modal-close\').click()"' +
+      ' class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors underline underline-offset-2 cursor-pointer">' +
+      'Close this window' +
+      '</button></div>'
 
     loadCalendly('https://calendly.com/claudiabeck/30-min-check-in')
+    listenForBookingConfirmed()
   }
 
   function loadCalendly(url) {
@@ -196,6 +202,21 @@
     link.rel = 'stylesheet'
     link.href = 'https://assets.calendly.com/assets/external/widget.css'
     document.head.appendChild(link)
+  }
+
+  function listenForBookingConfirmed() {
+    function onMessage(e) {
+      if (e.data && e.data.event === 'calendly.event_scheduled') {
+        const btn = document.getElementById('bm-close-btn')
+        if (btn) {
+          btn.textContent = 'Your session is booked — close this window'
+          btn.classList.remove('text-on-surface-variant')
+          btn.classList.add('text-executive-gold', 'font-semibold')
+        }
+        window.removeEventListener('message', onMessage)
+      }
+    }
+    window.addEventListener('message', onMessage)
   }
 
   function bindTriggers() {
