@@ -119,7 +119,69 @@
 
   function handleStep1Submit(e) {
     e.preventDefault()
-    // populated in Task 6
+
+    var payload = {
+      role: document.getElementById('bm-role').value.trim(),
+      organization: document.getElementById('bm-organization').value.trim(),
+      whatIsNotWorking: document.getElementById('bm-what-not-working').value.trim(),
+      frictionDimensions: Array.from(document.querySelectorAll('[name="bm-friction"]:checked')).map(function(cb) { return cb.value }),
+      whatHaveYouTried: document.getElementById('bm-tried').value.trim(),
+      intent: document.querySelector('[name="bm-intent"]:checked').value,
+    }
+
+    // Fire-and-forget — does not block transition to Step 2
+    fetch('/api/intake', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).catch(function() { /* silent — data capture best-effort */ })
+
+    showStep2(payload.intent)
+  }
+
+  function showStep2(intent) {
+    var showTeamDoor = intent === 'team' || intent === 'both'
+
+    document.getElementById('booking-modal-body').innerHTML =
+      '<p class="text-on-surface font-body-lg text-body-lg mb-8" style="font-family:\'Source Serif 4\',serif">' +
+      'Thanks for providing clarity. We look forward to a productive session. Let\'s find a time.' +
+      '</p>' +
+      '<div id="bm-calendly-container" style="min-height:630px"></div>' +
+      (showTeamDoor
+        ? '<div id="bm-team-door" class="mt-6 pt-6 border-t border-outline-variant text-center">' +
+          '<p class="text-on-surface-variant font-body-md text-body-md">' +
+          'Also thinking about your team? ' +
+          '<a href="https://attuneleadership.vercel.app?utm_source=btg-site&utm_medium=booking-modal&utm_campaign=team-door"' +
+          ' target="_blank" rel="noopener noreferrer"' +
+          ' class="text-executive-gold hover:brightness-110 transition-colors">' +
+          'Explore the A.T.T.U.N.E.™ team assessment →' +
+          '</a></p></div>'
+        : '')
+
+    loadCalendly('https://calendly.com/claudiabeck/30-min-check-in')
+  }
+
+  function loadCalendly(url) {
+    if (window.Calendly) {
+      window.Calendly.initInlineWidget({
+        url: url,
+        parentElement: document.getElementById('bm-calendly-container'),
+      })
+      return
+    }
+    var script = document.createElement('script')
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.onload = function() {
+      window.Calendly.initInlineWidget({
+        url: url,
+        parentElement: document.getElementById('bm-calendly-container'),
+      })
+    }
+    document.head.appendChild(script)
+    var link = document.createElement('link')
+    link.rel = 'stylesheet'
+    link.href = 'https://assets.calendly.com/assets/external/widget.css'
+    document.head.appendChild(link)
   }
 
   function bindTriggers() {
