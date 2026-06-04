@@ -2,7 +2,7 @@
   const TEMPLATE = `
 <div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-headline" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4">
   <div id="booking-modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-  <div tabindex="-1" class="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-surface-container border border-outline-variant rounded-lg shadow-2xl">
+  <div tabindex="-1" id="booking-modal-panel" class="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-surface-container border border-outline-variant rounded-lg shadow-2xl">
     <button id="booking-modal-close" aria-label="Close"
       class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface text-2xl leading-none cursor-pointer z-10">×</button>
     <div id="booking-modal-body" class="p-8 md:p-12"></div>
@@ -33,6 +33,12 @@
     if (!modal) return
     modal.classList.add('hidden')
     document.body.style.overflow = ''
+    // Restore panel height cap for next open
+    const panel = document.getElementById('booking-modal-panel')
+    if (panel) {
+      panel.classList.add('max-h-[90vh]')
+      panel.classList.remove('my-4')
+    }
   }
 
   function showStep1() {
@@ -144,11 +150,18 @@
   function showStep2(intent) {
     const showTeamDoor = intent === 'team' || intent === 'both'
 
+    // Expand panel for Calendly — remove height cap so the full widget renders
+    const panel = document.getElementById('booking-modal-panel')
+    if (panel) {
+      panel.classList.remove('max-h-[90vh]')
+      panel.classList.add('my-4')
+    }
+
     document.getElementById('booking-modal-body').innerHTML =
-      '<p id="booking-modal-headline" class="text-on-surface font-body-lg text-body-lg mb-8" style="font-family:\'Source Serif 4\',serif">' +
+      '<p id="booking-modal-headline" class="text-on-surface font-body-lg text-body-lg mb-6" style="font-family:\'Source Serif 4\',serif">' +
       'Thanks for providing clarity. We look forward to a productive session. Let\'s find a time.' +
       '</p>' +
-      '<div id="bm-calendly-container" style="min-height:630px"></div>' +
+      '<div id="bm-calendly-container" style="min-width:320px;height:700px;"></div>' +
       (showTeamDoor
         ? '<div id="bm-team-door" class="mt-6 pt-6 border-t border-outline-variant text-center">' +
           '<p class="text-on-surface-variant font-body-md text-body-md">' +
