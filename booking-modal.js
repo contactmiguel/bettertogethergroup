@@ -161,9 +161,8 @@
       '<p id="booking-modal-headline" class="text-on-surface font-body-lg text-body-lg mb-6" style="font-family:\'Source Serif 4\',serif">' +
       'Thanks for providing clarity. We look forward to a productive session. Let\'s find a time.' +
       '</p>' +
-      '<div id="bm-calendly-container" style="min-width:320px;height:700px;"></div>' +
       (showTeamDoor
-        ? '<div id="bm-team-door" class="mt-6 pt-6 border-t border-outline-variant text-center">' +
+        ? '<div id="bm-team-door" class="mb-6 pb-6 border-b border-outline-variant">' +
           '<p class="text-on-surface-variant font-body-md text-body-md">' +
           'Also thinking about your team? ' +
           '<a href="https://attuneleadership.vercel.app?utm_source=btg-site&utm_medium=booking-modal&utm_campaign=team-door"' +
@@ -172,6 +171,7 @@
           'Explore the A.T.T.U.N.E.™ team assessment →' +
           '</a></p></div>'
         : '') +
+      '<div id="bm-calendly-container" style="min-width:320px;height:700px;"></div>' +
       '<div class="mt-6 text-center">' +
       '<button id="bm-close-btn" type="button" onclick="document.getElementById(\'booking-modal-close\').click()"' +
       ' class="text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-colors underline underline-offset-2 cursor-pointer">' +
