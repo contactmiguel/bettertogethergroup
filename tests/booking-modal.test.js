@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 
 // booking-modal.js uses DOMContentLoaded — simulate by calling the exported init
 // We import after setting up DOM so the module sees our document

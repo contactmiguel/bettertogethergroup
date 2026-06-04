@@ -1,8 +1,8 @@
 (function () {
   const TEMPLATE = `
-<div id="booking-modal" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4">
+<div id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-modal-headline" class="hidden fixed inset-0 z-[200] flex items-center justify-center p-4">
   <div id="booking-modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-  <div class="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-surface-container border border-outline-variant rounded-lg shadow-2xl">
+  <div tabindex="-1" class="relative z-10 w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-surface-container border border-outline-variant rounded-lg shadow-2xl">
     <button id="booking-modal-close" aria-label="Close"
       class="absolute top-4 right-4 text-on-surface-variant hover:text-on-surface text-2xl leading-none cursor-pointer z-10">×</button>
     <div id="booking-modal-body" class="p-8 md:p-12"></div>
@@ -11,6 +11,7 @@
 `
 
   function inject() {
+    if (document.getElementById('booking-modal')) return
     const wrapper = document.createElement('div')
     wrapper.innerHTML = TEMPLATE
     document.body.appendChild(wrapper.firstElementChild)
@@ -18,12 +19,17 @@
 
   function openBookingModal() {
     const modal = document.getElementById('booking-modal')
+    if (!modal) return
     modal.classList.remove('hidden')
     showStep1()
+    const panel = modal.querySelector('[role="document"], .relative')
+    if (panel) panel.focus()
   }
 
   function closeModal() {
-    document.getElementById('booking-modal').classList.add('hidden')
+    const modal = document.getElementById('booking-modal')
+    if (!modal) return
+    modal.classList.add('hidden')
   }
 
   function showStep1() {
@@ -41,6 +47,9 @@
     inject()
     document.getElementById('booking-modal-close').addEventListener('click', closeModal)
     document.getElementById('booking-modal-backdrop').addEventListener('click', closeModal)
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal()
+    })
     bindTriggers()
   }
 
