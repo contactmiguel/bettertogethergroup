@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { validateIntake, buildIntakeRecord } = require('./intake-handler')
 
 const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0]; // Remove query string
@@ -12,8 +13,28 @@ const server = http.createServer((req, res) => {
 
   // POST /api/intake — intake form submission
   if (req.method === 'POST' && urlPath === '/api/intake') {
+    const ct = req.headers['content-type'] || ''
+    if (!ct.includes('application/json')) {
+      res.writeHead(415, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ ok: false, error: 'Content-Type must be application/json' }))
+      return
+    }
     let body = ''
-    req.on('data', chunk => { body += chunk.toString() })
+    let bytesSeen = 0
+    req.on('error', () => {
+      res.writeHead(400, { 'Content-Type': 'application/json' })
+      res.end(JSON.stringify({ ok: false, error: 'request error' }))
+    })
+    req.on('data', chunk => {
+      bytesSeen += chunk.length
+      if (bytesSeen > 64 * 1024) {
+        res.writeHead(413, { 'Content-Type': 'application/json' })
+        res.end(JSON.stringify({ ok: false, error: 'payload too large' }))
+        req.destroy()
+        return
+      }
+      body += chunk.toString()
+    })
     req.on('end', () => {
       let payload
       try {
@@ -24,7 +45,6 @@ const server = http.createServer((req, res) => {
         return
       }
 
-      const { validateIntake, buildIntakeRecord } = require('./intake-handler')
       const validation = validateIntake(payload)
       if (!validation.ok) {
         res.writeHead(422, { 'Content-Type': 'application/json' })
