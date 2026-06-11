@@ -52,6 +52,18 @@
       <form id="bm-form" novalidate class="space-y-7">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
+            <label class="block text-on-surface font-body-lg font-semibold mb-1" for="bm-name">Name <span class="text-executive-gold">*</span></label>
+            <input id="bm-name" type="text" placeholder="Your full name"
+              class="w-full bg-surface-container-high border border-outline-variant text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-executive-gold transition-colors" />
+          </div>
+          <div>
+            <label class="block text-on-surface font-body-lg font-semibold mb-1" for="bm-email">Email <span class="text-executive-gold">*</span></label>
+            <input id="bm-email" type="email" placeholder="you@company.com"
+              class="w-full bg-surface-container-high border border-outline-variant text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-executive-gold transition-colors" />
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
             <label class="block text-on-surface font-body-lg font-semibold mb-1" for="bm-role">Current role <span class="text-executive-gold">*</span></label>
             <input id="bm-role" type="text" placeholder="e.g. Chief Operating Officer"
               class="w-full bg-surface-container-high border border-outline-variant text-on-surface px-4 py-3 font-body-md text-body-md focus:outline-none focus:border-executive-gold transition-colors" />
@@ -115,14 +127,18 @@
   }
 
   function checkStep1Validity() {
+    const name = (document.getElementById('bm-name')?.value || '').trim()
+    const email = (document.getElementById('bm-email')?.value || '').trim()
     const role = (document.getElementById('bm-role')?.value || '').trim()
     const what = (document.getElementById('bm-what-not-working')?.value || '').trim()
     const intent = document.querySelector('[name="bm-intent"]:checked')
     const btn = document.getElementById('bm-submit')
-    if (btn) btn.disabled = !(role && what && intent)
+    if (btn) btn.disabled = !(name && email && role && what && intent)
   }
 
   function bindStep1() {
+    document.getElementById('bm-name')?.addEventListener('input', checkStep1Validity)
+    document.getElementById('bm-email')?.addEventListener('input', checkStep1Validity)
     document.getElementById('bm-role')?.addEventListener('input', checkStep1Validity)
     document.getElementById('bm-what-not-working')?.addEventListener('input', checkStep1Validity)
     document.querySelectorAll('[name="bm-intent"]').forEach(r => r.addEventListener('change', checkStep1Validity))
@@ -133,6 +149,8 @@
     e.preventDefault()
 
     const payload = {
+      name: document.getElementById('bm-name').value.trim(),
+      email: document.getElementById('bm-email').value.trim(),
       role: document.getElementById('bm-role').value.trim(),
       organization: document.getElementById('bm-organization').value.trim(),
       whatIsNotWorking: document.getElementById('bm-what-not-working').value.trim(),
@@ -142,16 +160,16 @@
     }
 
     // Fire-and-forget — does not block transition to Step 2
-    fetch('/api/intake', {
+    fetch('https://formspree.io/f/mwvjrojl', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload),
     }).catch(function() { /* silent — data capture best-effort */ })
 
-    showStep2(payload.intent)
+    showStep2(payload.intent, payload.name, payload.email)
   }
 
-  function showStep2(intent) {
+  function showStep2(intent, name, email) {
     _step2Intent = intent
 
     // Anchor modal to top and suppress the panel's own scrollbar —
@@ -176,7 +194,10 @@
       '<div id="bm-calendly-container" style="min-width:320px;height:calc(90vh - 180px);min-height:500px;"></div>' +
       '<div id="bm-post-booking" class="mt-6"></div>'
 
-    loadCalendly('https://calendly.com/claudiabeck/30-min-check-in')
+    const calendlyUrl = 'https://calendly.com/claudiabeck/30-min-check-in' +
+      '?name=' + encodeURIComponent(name || '') +
+      '&email=' + encodeURIComponent(email || '')
+    loadCalendly(calendlyUrl)
     listenForBookingConfirmed()
   }
 
