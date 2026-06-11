@@ -219,12 +219,17 @@
 
   /* Labels */
   .executive-network-card__labels text {
-    font-family: 'Open Sans', sans-serif; font-weight: 600;
-    font-size: 8.5px; letter-spacing: 0.13em;
-    fill: rgba(226,232,240,0.58);
+    font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+    font-weight: 500;
+    font-size: 10px; letter-spacing: 0.24em;
+    fill: rgba(231,238,246,0.86);
+    filter: url(#executive-label-shadow);
   }
   .executive-network-card__labels .ntw-label-center {
-    fill: rgba(197,160,89,0.68); letter-spacing: 0.18em; font-size: 8px;
+    fill: rgba(235,201,130,0.9); letter-spacing: 0.32em; font-size: 8px;
+  }
+  .executive-network-card__labels .ntw-sub-label {
+    font-size: 8px; letter-spacing: 0.18em; fill: rgba(231,238,246,0.54);
   }
 
   /* Traveling signal dots */
@@ -557,16 +562,19 @@
         </g>
 
         <!-- Labels -->
-        <g class="executive-network-card__labels executive-network-card__reveal executive-network-card__reveal--three"
-           filter="url(#executive-label-shadow)">
-          <text x="280" y="89"  text-anchor="middle">AWARENESS</text>
-          <text x="448" y="163" text-anchor="start" >STRATEGY</text>
-          <text x="492" y="315" text-anchor="start" >INFLUENCE</text>
-          <text x="438" y="542" text-anchor="start" >CULTURE</text>
-          <text x="280" y="602" text-anchor="middle">TRUST</text>
-          <text x="118" y="542" text-anchor="end"   >CLARITY</text>
-          <text x="70"  y="337" text-anchor="end"   >ALIGNMENT</text>
-          <text x="122" y="163" text-anchor="end"   >MINDSET</text>
+        <g class="executive-network-card__labels executive-network-card__reveal executive-network-card__reveal--three">
+          <text x="280" y="78"  text-anchor="middle">AWARENESS</text>
+          <text x="451" y="158" text-anchor="start" >STRATEGY</text>
+          <text x="491" y="316" text-anchor="start" >INFLUENCE</text>
+          <text x="438" y="548" text-anchor="start" >CULTURE</text>
+          <text x="280" y="620" text-anchor="middle">TRUST</text>
+          <text x="120" y="552" text-anchor="end"   >CLARITY</text>
+          <text x="73"  y="338" text-anchor="end"   >ALIGNMENT</text>
+          <text x="132" y="164" text-anchor="end"   >MINDSET</text>
+          <text x="374" y="224" text-anchor="middle" class="ntw-sub-label">EXECUTION</text>
+          <text x="183" y="224" text-anchor="middle" class="ntw-sub-label">DIALOGUE</text>
+          <text x="390" y="455" text-anchor="middle" class="ntw-sub-label">STEWARDSHIP</text>
+          <text x="174" y="462" text-anchor="middle" class="ntw-sub-label">JUDGMENT</text>
           <text x="280" y="373" text-anchor="middle" class="ntw-label-center">LEADERSHIP</text>
         </g>
 
