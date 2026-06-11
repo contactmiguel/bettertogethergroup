@@ -142,7 +142,7 @@ describe('step 2 — confirmation + calendly', () => {
     await new Promise(r => setTimeout(r, 0))
     window.dispatchEvent(new MessageEvent('message', { data: { event: 'calendly.event_scheduled' } }))
     await new Promise(r => setTimeout(r, 0))
-    expect(document.getElementById('bm-post-booking').innerHTML).toContain('attuneleadership.vercel.app')
+    expect(document.getElementById('bm-post-booking').innerHTML).toContain('attuneleadership.com')
   })
 
   it('shows team door for both intent after booking confirmed', async () => {
@@ -152,7 +152,7 @@ describe('step 2 — confirmation + calendly', () => {
     await new Promise(r => setTimeout(r, 0))
     window.dispatchEvent(new MessageEvent('message', { data: { event: 'calendly.event_scheduled' } }))
     await new Promise(r => setTimeout(r, 0))
-    expect(document.getElementById('bm-post-booking').innerHTML).toContain('attuneleadership.vercel.app')
+    expect(document.getElementById('bm-post-booking').innerHTML).toContain('attuneleadership.com')
   })
 
   it('team door link has correct UTM-tagged href after booking confirmed', async () => {
@@ -163,7 +163,7 @@ describe('step 2 — confirmation + calendly', () => {
     window.dispatchEvent(new MessageEvent('message', { data: { event: 'calendly.event_scheduled' } }))
     await new Promise(r => setTimeout(r, 0))
     const link = document.querySelector('#bm-post-booking a')
-    expect(link.href).toContain('attuneleadership.vercel.app')
+    expect(link.href).toContain('attuneleadership.com')
     expect(link.href).toContain('utm_source=btg-site')
     expect(link.href).toContain('utm_medium=booking-modal')
     expect(link.href).toContain('utm_campaign=team-door')

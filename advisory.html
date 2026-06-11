@@ -130,11 +130,144 @@
     box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important;
   }
 
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 50;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: #111415;
+    border: 2px solid #C5A059;
+    padding: 48px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: #C5A059;
+    font-size: 28px;
+    cursor: pointer;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
     }
+  }
+
+  /* ── Executive Network Card ─────────────────────────── */
+  .executive-network-card { position: relative; width: 100%; }
+
+  .executive-network-card__glow {
+    position: absolute; border-radius: 50%;
+    pointer-events: none; z-index: 0;
+  }
+  .executive-network-card__glow--gold {
+    width: 340px; height: 300px;
+    top: 44%; left: 50%; transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(197,160,89,0.18) 0%, transparent 70%);
+    filter: blur(55px);
+  }
+  .executive-network-card__glow--blue {
+    width: 280px; height: 230px; top: 18%; right: 8%;
+    background: radial-gradient(circle, rgba(117,168,215,0.12) 0%, transparent 70%);
+    filter: blur(50px);
+  }
+
+  .executive-network-card__svg {
+    width: 100%; display: block; position: relative; z-index: 1;
+    border-radius: 2rem;
+    box-shadow: 0 28px 72px rgba(2,6,12,0.55), 0 4px 18px rgba(2,6,12,0.3),
+                0 0 0 1px rgba(255,255,255,0.05);
+  }
+
+  .executive-network-card__grid ellipse,
+  .executive-network-card__grid path {
+    stroke: rgba(197,160,89,0.07); stroke-width: 0.6; fill: none;
+  }
+  .executive-network-card__halo circle:last-child { fill: rgba(197,160,89,0.05); }
+  .executive-network-card__links path  { stroke: rgba(197,160,89,0.22); stroke-width: 0.75; fill: none; }
+  .executive-network-card__mesh path   { stroke: rgba(197,160,89,0.10); stroke-width: 0.6;  fill: none; }
+
+  /* Node styles */
+  .executive-network-card__nodes .ntw-glow       { fill: rgba(197,160,89,0.1); }
+  .executive-network-card__nodes .ntw-ring        { fill: #0E1A2B; stroke: rgba(197,160,89,0.5); stroke-width: 1.0; }
+  .executive-network-card__nodes .ntw-dot         { fill: #C5A059; }
+  .executive-network-card__nodes .ntw-inner-ring  { fill: #0E1A2B; stroke: rgba(197,160,89,0.3); stroke-width: 0.8; }
+  .executive-network-card__nodes .ntw-inner-dot   { fill: #C5A059; opacity: 0.65; }
+
+  /* Center node */
+  .executive-network-card__center .ntw-center-halo { fill: rgba(197,160,89,0.08); }
+  .executive-network-card__center .ntw-center-ring { fill: #09111D; stroke: rgba(228,191,118,0.78); stroke-width: 1.8; }
+  .executive-network-card__center .ntw-center-dot  { fill: #E4BF76; }
+
+  /* Labels */
+  .executive-network-card__labels text {
+    font-family: 'Open Sans', sans-serif; font-weight: 600;
+    font-size: 8.5px; letter-spacing: 0.13em;
+    fill: rgba(226,232,240,0.58);
+  }
+  .executive-network-card__labels .ntw-label-center {
+    fill: rgba(197,160,89,0.68); letter-spacing: 0.18em; font-size: 8px;
+  }
+
+  /* Traveling signal dots */
+  .executive-network-card__signals path {
+    stroke: #E4BF76; stroke-width: 1.5; fill: none;
+    stroke-dasharray: 8 92; stroke-dashoffset: 108; opacity: 0;
+    animation: ntw-signal 4.5s linear infinite;
+    animation-play-state: paused;
+  }
+  .executive-network-card.revealed .executive-network-card__signals path {
+    animation-play-state: running;
+  }
+  .executive-network-card__signals path:nth-child(1) { animation-delay: 0.0s; }
+  .executive-network-card__signals path:nth-child(2) { animation-delay: 0.6s; }
+  .executive-network-card__signals path:nth-child(3) { animation-delay: 1.2s; }
+  .executive-network-card__signals path:nth-child(4) { animation-delay: 1.8s; }
+  .executive-network-card__signals path:nth-child(5) { animation-delay: 2.4s; }
+  .executive-network-card__signals path:nth-child(6) { animation-delay: 3.0s; }
+  .executive-network-card__signals path:nth-child(7) { animation-delay: 3.6s; }
+  .executive-network-card__signals path:nth-child(8) { animation-delay: 0.9s; }
+
+  @keyframes ntw-signal {
+    0%   { stroke-dashoffset: 108; opacity: 0; }
+    5%   { opacity: 0.85; }
+    90%  { opacity: 0.85; }
+    100% { stroke-dashoffset: -8;  opacity: 0; }
+  }
+
+  /* Staggered reveal (paused until IntersectionObserver adds .revealed) */
+  .executive-network-card__reveal {
+    opacity: 0;
+    animation: ntw-fade 0.8s ease-out forwards;
+    animation-play-state: paused;
+  }
+  .executive-network-card.revealed .executive-network-card__reveal { animation-play-state: running; }
+  .executive-network-card__reveal--one   { animation-delay: 0.05s; }
+  .executive-network-card__reveal--two   { animation-delay: 0.5s;  }
+  .executive-network-card__reveal--three { animation-delay: 0.95s; }
+  .executive-network-card__reveal--four  { animation-delay: 1.4s;  }
+
+  @keyframes ntw-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
 </style>
 </head>
@@ -147,7 +280,6 @@
     </a>
     <div class="hidden md:flex items-center gap-8">
       <a class="text-executive-gold border-b-2 border-executive-gold pb-1 font-label-md text-label-md transition-colors duration-300" href="advisory.html">Individual Advisory</a>
-      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="index.html#framework">A.T.T.U.N.E.™ Framework</a>
       <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="insights.html">Insights</a>
       <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="testimonials.html">Testimonials</a>
       <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="about.html">About</a>
@@ -272,9 +404,173 @@
         </li>
       </ul>
     </div>
-    <div class="relative group" data-reveal>
-      <div class="absolute -inset-4 bg-executive-gold/10 blur-xl group-hover:bg-executive-gold/20 transition-all duration-300"></div>
-      <img alt="Executive Leadership" class="relative z-10 w-full h-[600px] object-cover shadow-2xl grayscale hover:grayscale-0 transition-all duration-700" src="/claudia.jpg"/>
+    <div class="executive-network-card" data-reveal data-network-portrait>
+      <div class="executive-network-card__glow executive-network-card__glow--gold"></div>
+      <div class="executive-network-card__glow executive-network-card__glow--blue"></div>
+
+      <svg
+        class="executive-network-card__svg"
+        viewBox="0 0 560 700"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="executive-bg" x1="96" y1="72" x2="466" y2="648" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stop-color="#0E1A2B"/>
+            <stop offset="52%"  stop-color="#09111D"/>
+            <stop offset="100%" stop-color="#050A12"/>
+          </linearGradient>
+          <radialGradient id="executive-core-halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(280 345) rotate(90) scale(156 156)">
+            <stop offset="0%"   stop-color="#E4BF76" stop-opacity="0.42"/>
+            <stop offset="38%"  stop-color="#C69A48" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#C69A48" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="executive-corner-glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(430 120) rotate(129) scale(286 216)">
+            <stop offset="0%"   stop-color="#75A8D7" stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="#75A8D7" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="executive-soft-glow" x="-120%" y="-120%" width="340%" height="340%">
+            <feGaussianBlur stdDeviation="8" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="executive-label-shadow" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#02060C" flood-opacity="0.65"/>
+          </filter>
+        </defs>
+
+        <rect x="0" y="0" width="560" height="700" rx="36" fill="url(#executive-bg)"/>
+        <rect x="1" y="1" width="558" height="698" rx="35" stroke="rgba(255,255,255,0.08)"/>
+        <rect x="0" y="0" width="560" height="700" rx="36" fill="url(#executive-corner-glow)"/>
+
+        <g class="executive-network-card__grid">
+          <ellipse cx="280" cy="345" rx="214" ry="250"/>
+          <ellipse cx="280" cy="345" rx="166" ry="196"/>
+          <ellipse cx="280" cy="345" rx="114" ry="136"/>
+          <path d="M60 345H500"/>
+          <path d="M280 84V616"/>
+        </g>
+
+        <g class="executive-network-card__halo">
+          <circle cx="280" cy="345" r="156" fill="url(#executive-core-halo)"/>
+          <circle cx="280" cy="345" r="46"  filter="url(#executive-soft-glow)"/>
+        </g>
+
+        <g class="executive-network-card__links executive-network-card__reveal executive-network-card__reveal--one">
+          <path d="M280 345L280 112"/>
+          <path d="M280 345L425 170"/>
+          <path d="M280 345L470 310"/>
+          <path d="M280 345L420 516"/>
+          <path d="M280 345L280 578"/>
+          <path d="M280 345L138 520"/>
+          <path d="M280 345L92 332"/>
+          <path d="M280 345L144 176"/>
+          <path d="M280 345L374 238"/>
+          <path d="M280 345L384 430"/>
+          <path d="M280 345L184 436"/>
+          <path d="M280 345L188 244"/>
+        </g>
+
+        <g class="executive-network-card__mesh executive-network-card__reveal executive-network-card__reveal--two">
+          <path d="M280 112C360 116 410 138 425 170"/>
+          <path d="M425 170C454 210 468 250 470 310"/>
+          <path d="M470 310C454 398 438 466 420 516"/>
+          <path d="M420 516C380 558 330 578 280 578"/>
+          <path d="M280 578C228 578 178 560 138 520"/>
+          <path d="M138 520C110 468 96 408 92 332"/>
+          <path d="M92 332C98 258 112 208 144 176"/>
+          <path d="M144 176C186 136 232 114 280 112"/>
+          <path d="M188 244C240 208 322 208 374 238"/>
+          <path d="M184 436C244 478 326 478 384 430"/>
+          <path d="M188 244C166 290 166 388 184 436"/>
+          <path d="M374 238C398 284 400 384 384 430"/>
+        </g>
+
+        <g class="executive-network-card__signals executive-network-card__reveal executive-network-card__reveal--two">
+          <path d="M280 112C360 116 410 138 425 170"    pathLength="100"/>
+          <path d="M425 170C454 210 468 250 470 310"    pathLength="100"/>
+          <path d="M470 310C454 398 438 466 420 516"    pathLength="100"/>
+          <path d="M420 516C380 558 330 578 280 578"    pathLength="100"/>
+          <path d="M138 520C110 468 96 408 92 332"      pathLength="100"/>
+          <path d="M92 332C98 258 112 208 144 176"      pathLength="100"/>
+          <path d="M188 244C240 208 322 208 374 238"    pathLength="100"/>
+          <path d="M184 436C244 478 326 478 384 430"    pathLength="100"/>
+        </g>
+
+        <!-- Outer ring nodes -->
+        <g class="executive-network-card__nodes executive-network-card__reveal executive-network-card__reveal--two">
+          <circle cx="280" cy="112" r="18" class="ntw-glow"/>
+          <circle cx="280" cy="112" r="10" class="ntw-ring"/>
+          <circle cx="280" cy="112" r="3.5" class="ntw-dot"/>
+
+          <circle cx="425" cy="170" r="15" class="ntw-glow"/>
+          <circle cx="425" cy="170" r="8.5" class="ntw-ring"/>
+          <circle cx="425" cy="170" r="3" class="ntw-dot"/>
+
+          <circle cx="470" cy="310" r="15" class="ntw-glow"/>
+          <circle cx="470" cy="310" r="8.5" class="ntw-ring"/>
+          <circle cx="470" cy="310" r="3" class="ntw-dot"/>
+
+          <circle cx="420" cy="516" r="15" class="ntw-glow"/>
+          <circle cx="420" cy="516" r="8.5" class="ntw-ring"/>
+          <circle cx="420" cy="516" r="3" class="ntw-dot"/>
+
+          <circle cx="280" cy="578" r="18" class="ntw-glow"/>
+          <circle cx="280" cy="578" r="10" class="ntw-ring"/>
+          <circle cx="280" cy="578" r="3.5" class="ntw-dot"/>
+
+          <circle cx="138" cy="520" r="15" class="ntw-glow"/>
+          <circle cx="138" cy="520" r="8.5" class="ntw-ring"/>
+          <circle cx="138" cy="520" r="3" class="ntw-dot"/>
+
+          <circle cx="92"  cy="332" r="15" class="ntw-glow"/>
+          <circle cx="92"  cy="332" r="8.5" class="ntw-ring"/>
+          <circle cx="92"  cy="332" r="3" class="ntw-dot"/>
+
+          <circle cx="144" cy="176" r="15" class="ntw-glow"/>
+          <circle cx="144" cy="176" r="8.5" class="ntw-ring"/>
+          <circle cx="144" cy="176" r="3" class="ntw-dot"/>
+
+          <!-- Inner orbit nodes -->
+          <circle cx="374" cy="238" r="11" class="ntw-glow"/>
+          <circle cx="374" cy="238" r="6"  class="ntw-inner-ring"/>
+          <circle cx="374" cy="238" r="2.2" class="ntw-inner-dot"/>
+
+          <circle cx="384" cy="430" r="11" class="ntw-glow"/>
+          <circle cx="384" cy="430" r="6"  class="ntw-inner-ring"/>
+          <circle cx="384" cy="430" r="2.2" class="ntw-inner-dot"/>
+
+          <circle cx="184" cy="436" r="11" class="ntw-glow"/>
+          <circle cx="184" cy="436" r="6"  class="ntw-inner-ring"/>
+          <circle cx="184" cy="436" r="2.2" class="ntw-inner-dot"/>
+
+          <circle cx="188" cy="244" r="11" class="ntw-glow"/>
+          <circle cx="188" cy="244" r="6"  class="ntw-inner-ring"/>
+          <circle cx="188" cy="244" r="2.2" class="ntw-inner-dot"/>
+        </g>
+
+        <!-- Center node -->
+        <g class="executive-network-card__center executive-network-card__reveal executive-network-card__reveal--two">
+          <circle cx="280" cy="345" r="40" class="ntw-center-halo" filter="url(#executive-soft-glow)"/>
+          <circle cx="280" cy="345" r="26" class="ntw-center-ring"/>
+          <circle cx="280" cy="345" r="9"  class="ntw-center-dot"/>
+        </g>
+
+        <!-- Labels -->
+        <g class="executive-network-card__labels executive-network-card__reveal executive-network-card__reveal--three"
+           filter="url(#executive-label-shadow)">
+          <text x="280" y="89"  text-anchor="middle">AWARENESS</text>
+          <text x="448" y="163" text-anchor="start" >STRATEGY</text>
+          <text x="492" y="315" text-anchor="start" >INFLUENCE</text>
+          <text x="438" y="542" text-anchor="start" >CULTURE</text>
+          <text x="280" y="602" text-anchor="middle">TRUST</text>
+          <text x="118" y="542" text-anchor="end"   >CLARITY</text>
+          <text x="70"  y="337" text-anchor="end"   >ALIGNMENT</text>
+          <text x="122" y="163" text-anchor="end"   >MINDSET</text>
+          <text x="280" y="373" text-anchor="middle" class="ntw-label-center">LEADERSHIP</text>
+        </g>
+
+      </svg>
     </div>
   </div>
 </section>
@@ -286,7 +582,7 @@
     <p class="font-body-lg text-body-lg mb-10 text-subtle-slate">Every engagement is anchored in the A.T.T.U.N.E.™ framework — a relational leadership operating system built for senior leaders navigating pressure, ambiguity, and the human dynamics that quietly distort strategy. The six dimensions of Awareness, Tone, Trust, Understanding, Naming, and Equilibrium form the diagnostic lens I bring to every conversation.</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a href="index.html#framework" class="bg-deep-navy text-platinum-gray px-8 py-4 font-label-md text-label-md hover:bg-subtle-slate transition-all duration-200 inline-block">Explore the Framework</a>
-      <a href="index.html#framework" onclick="setTimeout(()=>document.getElementById('downloadModal')?.classList.add('active'),600)" class="border border-subtle-slate/40 text-deep-navy px-8 py-4 font-label-md text-label-md hover:bg-deep-navy/5 transition-all duration-200 inline-block">Download the Individual Diagnostic</a>
+      <button onclick="document.getElementById('downloadModal').classList.add('active')" class="border border-subtle-slate/40 text-deep-navy px-8 py-4 font-label-md text-label-md hover:bg-deep-navy/5 transition-all duration-200 cursor-pointer">Download the Individual Diagnostic</button>
     </div>
   </div>
 </section>
@@ -305,6 +601,54 @@
 
 </main>
 
+<div id="downloadModal" class="modal-overlay">
+  <div class="modal-content">
+    <button onclick="closeDownloadModal()" class="modal-close">&times;</button>
+
+    <!-- Step 1: Form -->
+    <div id="modalForm">
+      <h3 class="font-headline-sm text-headline-sm text-platinum-gray mb-2">Download the Individual Diagnostic</h3>
+      <p class="text-platinum-gray/60 font-body-md mb-8">Assess yourself across all six A.T.T.U.N.E.™ dimensions. Delivered as a private PDF — no obligation.</p>
+
+      <form onsubmit="return handleFormSubmit(event)">
+        <div class="mb-6">
+          <label class="block text-platinum-gray font-label-md text-label-md mb-2">Name</label>
+          <input type="text" name="name" required class="w-full bg-surface-container-low border border-subtle-slate/30 text-platinum-gray px-4 py-3 focus:outline-none focus:border-executive-gold transition-colors" placeholder="Your name"/>
+        </div>
+        <div class="mb-6">
+          <label class="block text-platinum-gray font-label-md text-label-md mb-2">Email</label>
+          <input type="email" name="email" required class="w-full bg-surface-container-low border border-subtle-slate/30 text-platinum-gray px-4 py-3 focus:outline-none focus:border-executive-gold transition-colors" placeholder="your@email.com"/>
+        </div>
+        <div class="mb-8">
+          <label class="block text-platinum-gray font-label-md text-label-md mb-2">Phone <span class="text-platinum-gray/40 font-normal">(optional)</span></label>
+          <input type="tel" name="phone" class="w-full bg-surface-container-low border border-subtle-slate/30 text-platinum-gray px-4 py-3 focus:outline-none focus:border-executive-gold transition-colors" placeholder="+1 (555) 000-0000"/>
+        </div>
+        <button type="submit" class="w-full bg-executive-gold text-deep-navy px-6 py-3 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Download PDF</button>
+      </form>
+
+      <p class="text-platinum-gray/40 text-xs mt-6 text-center">We respect your privacy. Your information will not be shared.</p>
+    </div>
+
+    <!-- Step 2: Success + team bridge -->
+    <div id="modalSuccess" style="display:none;">
+      <div class="flex justify-center mb-6">
+        <span class="material-symbols-outlined text-executive-gold text-5xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+      </div>
+      <h3 class="font-headline-sm text-headline-sm text-platinum-gray mb-3 text-center">Your diagnostic is downloading.</h3>
+      <p class="text-platinum-gray/60 font-body-md mb-8 text-center">Check your downloads folder for the A.T.T.U.N.E.™ Individual Diagnostic PDF.</p>
+
+      <div class="border border-executive-gold/30 p-6 mt-2">
+        <p class="font-label-caps text-label-caps text-executive-gold mb-3">NEXT STEP: YOUR TEAM</p>
+        <p class="text-platinum-gray/80 font-body-md mb-6 leading-relaxed">You've assessed how you lead. The same six dimensions shape how your team performs — see your team's profile with the interactive A.T.T.U.N.E.™ team assessment.</p>
+        <a href="https://attuneleadership.com?utm_source=btg-site&utm_medium=diagnostic-modal&utm_content=team-bridge" target="_blank" rel="noopener noreferrer" class="block w-full text-center border border-executive-gold text-executive-gold px-6 py-3 font-label-md text-label-md hover:bg-executive-gold hover:text-deep-navy transition-all duration-200">See Your Team's Profile →</a>
+        <p class="text-platinum-gray/30 text-xs mt-4 text-center">Opens the ATTUNE Leadership team assessment tool</p>
+      </div>
+
+      <button onclick="closeDownloadModal()" class="w-full mt-6 text-platinum-gray/50 font-label-md text-label-md hover:text-platinum-gray transition-colors text-sm">Close</button>
+    </div>
+  </div>
+</div>
+
 <footer class="bg-deep-navy border-t border-subtle-slate/20">
   <div class="max-w-container-max mx-auto px-margin-desktop py-10 grid grid-cols-1 md:grid-cols-3 gap-gutter items-center">
     <div class="flex flex-col items-center md:items-start">
@@ -312,7 +656,7 @@
       <p class="text-platinum-gray/50 text-sm font-body-md mt-2">Where Strategy Meets Human Reality.</p>
     </div>
     <div class="flex flex-col md:flex-row justify-center gap-6 text-center">
-      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="https://attuneleadership.vercel.app?utm_source=btg-site&utm_medium=footer" target="_blank" rel="noopener noreferrer">ATTUNE Leadership</a>
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="https://attuneleadership.com?utm_source=btg-site&utm_medium=footer" target="_blank" rel="noopener noreferrer">ATTUNE Leadership</a>
       <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="#cta-section">Contact</a>
       <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="privacy.html">Privacy Policy</a>
     </div>
@@ -343,6 +687,44 @@
       child.dataset.reveal = '';
       child.dataset.delay = i * 60;
     });
+  });
+
+  function closeDownloadModal() {
+    document.getElementById('downloadModal').classList.remove('active');
+    setTimeout(() => {
+      document.getElementById('modalForm').style.display = '';
+      document.getElementById('modalSuccess').style.display = 'none';
+    }, 300);
+  }
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.querySelector('input[name="name"]').value.trim();
+    const email = form.querySelector('input[name="email"]').value.trim();
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!name || !emailRegex.test(email)) {
+      return false;
+    }
+
+    const link = document.createElement('a');
+    link.href = '/attune_flyer.pdf';
+    link.download = 'attune_diagnostic.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = '';
+
+    return false;
+  }
+
+  document.getElementById('downloadModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+      closeDownloadModal();
+    }
   });
 </script>
 <script src="/booking-modal.js"></script>
