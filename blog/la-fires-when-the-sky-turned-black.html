@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LA Fires: When the Sky Turned Black | Better Together Group</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Source+Serif+4:wght@500;600&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-tertiary-fixed-variant": "#384761","on-primary-fixed": "#0d1c32","inverse-surface": "#e1e3e4","on-error": "#690005","on-primary-container": "#74829d","error-container": "#93000a","surface-container-low": "#191c1d","inverse-primary": "#515f78","error": "#ffb4ab","surface": "#111415","inverse-on-surface": "#2e3132","tertiary-fixed-dim": "#b8c7e6","surface-container": "#1d2021","secondary-container": "#604403","outline-variant": "#44474d","on-surface": "#e1e3e4","on-surface-variant": "#c5c6cd","surface-dim": "#111415","on-secondary-container": "#dab36a","on-primary": "#233148","surface-container-high": "#282a2b","outline": "#8f9097","executive-gold": "#C5A059","surface-variant": "#323536","on-tertiary": "#223149","tertiary": "#b8c7e6","secondary-fixed-dim": "#e9c176","background": "#111415","surface-tint": "#b9c7e4","on-secondary-fixed": "#261900","on-error-container": "#ffdad6","surface-container-lowest": "#0c0f10","tertiary-container": "#081930","tertiary-fixed": "#d6e3ff","deep-navy": "#050B16","primary-fixed-dim": "#b9c7e4","on-tertiary-fixed": "#0b1c33","on-secondary-fixed-variant": "#5d4201","platinum-gray": "#E2E8F0","primary-fixed": "#d6e3ff","secondary": "#e9c176","subtle-slate": "#475569","primary": "#b9c7e4","surface-bright": "#373a3b","on-background": "#e1e3e4","secondary-fixed": "#ffdea5","primary-container": "#0a192f","surface-container-highest": "#323536","on-primary-fixed-variant": "#39475f","on-tertiary-container": "#73829e","on-secondary": "#412d00"
+        },
+        "borderRadius": {"DEFAULT": "0.125rem","lg": "0.25rem","xl": "0.5rem","full": "0.75rem"},
+        "spacing": {"baseline": "8px","container-max": "1200px","gutter": "24px","margin-desktop": "64px","margin-mobile": "20px"},
+        "fontFamily": {"label-md": ["Open Sans"],"body-lg": ["Open Sans"],"display-lg-mobile": ["Source Serif 4"],"headline-md": ["Source Serif 4"],"display-lg": ["Source Serif 4"],"label-caps": ["Open Sans"],"headline-sm": ["Source Serif 4"],"body-md": ["Open Sans"]},
+        "fontSize": {"label-md": ["14px", {"lineHeight": "1.0","fontWeight": "600"}],"body-lg": ["18px", {"lineHeight": "1.6","fontWeight": "400"}],"display-lg-mobile": ["36px", {"lineHeight": "1.2","fontWeight": "600"}],"headline-md": ["32px", {"lineHeight": "1.3","fontWeight": "500"}],"display-lg": ["48px", {"lineHeight": "1.1","letterSpacing": "-0.02em","fontWeight": "600"}],"label-caps": ["12px", {"lineHeight": "1.0","letterSpacing": "0.1em","fontWeight": "700"}],"headline-sm": ["24px", {"lineHeight": "1.4","fontWeight": "500"}],"body-md": ["16px", {"lineHeight": "1.6","fontWeight": "400"}]}
+      }
+    }
+  }
+</script>
+<style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; display: inline-block; vertical-align: middle; }
+  nav.scrolled { background-color: rgba(5,11,22,0.98) !important; box-shadow: 0 4px 24px rgba(0,0,0,0.4) !important; }
+  @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+</style>
+</head>
+<body class="bg-deep-navy text-platinum-gray font-body-md selection:bg-executive-gold selection:text-deep-navy">
+
+<nav class="fixed top-0 w-full z-50 bg-deep-navy/90 backdrop-blur-md border-b border-subtle-slate/20 transition-all duration-200">
+  <div class="max-w-container-max mx-auto px-margin-desktop flex justify-between items-center h-20">
+    <a href="../index.html" class="cursor-pointer hover:opacity-80 transition-opacity">
+      <img src="https://images.cdn-files-a.com/uploads/8240325/400_filter_nobg_662521d99503b.png" alt="Better Together Group" class="h-12 w-auto"/>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="../advisory.html">Individual Advisory</a>
+      <a class="text-executive-gold border-b-2 border-executive-gold pb-1 font-label-md text-label-md" href="../insights.html">Insights</a>
+      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="../testimonials.html">Testimonials</a>
+      <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300" href="../about.html">About</a>
+      <button data-booking-trigger type="button" class="bg-executive-gold text-deep-navy px-6 py-3 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Book an Intro Session</button>
+    </div>
+    <button class="md:hidden text-executive-gold"><span class="material-symbols-outlined">menu</span></button>
+  </div>
+</nav>
+
+<main class="pt-20">
+
+  <!-- Hero Image -->
+  <div class="relative overflow-hidden" style="height: 460px;">
+    <img src="images/la-fire.jpg" alt="LA Fires — smoke over the city" class="w-full h-full object-cover object-center"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-deep-navy/20 via-transparent to-deep-navy/90"></div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <div class="border-b border-subtle-slate/10 bg-deep-navy">
+    <div class="max-w-3xl mx-auto px-gutter py-4">
+      <a href="../insights.html" class="inline-flex items-center gap-2 text-executive-gold font-label-caps text-label-caps hover:opacity-80 transition-opacity">
+        <span class="material-symbols-outlined" style="font-size:16px;">arrow_back</span>
+        BACK TO INSIGHTS
+      </a>
+    </div>
+  </div>
+
+  <!-- Article -->
+  <article class="bg-deep-navy">
+    <div class="max-w-3xl mx-auto px-gutter pt-12 pb-24">
+
+      <span class="font-label-caps text-label-caps text-executive-gold mb-4 block">EDITORIAL</span>
+      <h1 class="font-headline-md text-headline-md md:font-display-lg md:text-display-lg text-on-surface mb-8 leading-tight">LA Fires: When the Sky Turned Black</h1>
+
+      <div class="flex items-center gap-4 pb-10 mb-10 border-b border-subtle-slate/15">
+        <img src="../public/claudia.jpg" alt="Claudia Beck" class="h-12 w-12 rounded-full object-cover flex-shrink-0"/>
+        <div>
+          <p class="font-label-md text-label-md text-platinum-gray">Claudia Beck</p>
+          <p class="text-platinum-gray/50 font-body-md text-sm">January 13, 2025</p>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">It all began with a phone call on the afternoon of January 7th, 2025. A friend's urgent voice from Northern California asked, "Are you evacuating?" I was caught off guard. I had been coaching all day with notifications turned off. "What are you talking about?" I asked. "The Pacific Palisades fires — haven't you heard?" she replied, surprised at my lack of awareness.</p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">I glanced out the window — a clear blue sky stretched endlessly before me. Curious, I stepped outside, turned around, and my heart skipped a beat. A thick black cloud loomed on the other side, dark and heavy over the neighborhood. The smoke was so dense, so massive, it hardly seemed real. My stomach clenched as I quickly turned on the news. There it was — breaking headlines flashing across every channel. The Pacific Palisades fires were raging, and they were dangerously close — only two miles from my home.</p>
+
+        <h2 class="font-headline-sm text-headline-sm text-on-surface pt-6">The Fire Spreads</h2>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">Strangely, I wasn't panicking. I walked about a mile toward the fire's direction to get a better view. Flames licked the sky in the near distance, and crowds had gathered. I helped an elderly woman into her son's car, watching as they left, grateful for their safety. Even then, I still felt relatively calm, unaware of the full scale of the situation. People reassured each other, "It's still a mile away; the firefighters will stop it, we don't have to worry."</p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">Then came the strong winds.</p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">More friends called, their voices laced with worry. I could feel tension rising in my body. I started tracking the fire's movement, downloading apps, and setting up notifications. Updates poured in, each signaling the rapid spread of the fire. Two miles away. Should I evacuate? Where would I go? I had two cats, both of whom hated car travel, associating it with vet visits.</p>
+
+        <h2 class="font-headline-sm text-headline-sm text-on-surface pt-6">The Crossroads: Stay or Go?</h2>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">By morning, air quality had plummeted to dangerous levels. The sky turned an eerie gray, and the scent of burning wood and housing materials was suffocating. Yet, even as I tried to shut it all out, fear seeped in. Friends kept calling, urging me to leave. Several other fires had erupted and seemed to be spreading rapidly. I paused, turned inward, and heard: <em>We will be safe here.</em></p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">Despite my inner voice telling me we were safe, the tension was growing unbearable. The wind was unpredictable. The thought of being trapped in a rapidly spreading fire made my pulse quicken. But leaving meant stepping into another unknown — would the roads be open? Would my cats handle the stress? Every option carried risk, and time was slipping away. "You never know how the wind will shift or when traffic will grind to a halt," friends warned. "Get ahead of the situation — you don't want to be trapped in LA gridlock. Come stay with us in Palm Springs or Agoura Hills."</p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">Despite the flames, it wasn't fire that forced me to leave — it was the thick, toxic air that made every breath a struggle. Reluctantly, I packed the essentials: passport, birth certificate, phone, laptop, a few days' worth of clothes, and most importantly, two terrified cats. Stepping out the door, an unsettling question lingered — would home, and everything left behind, still be there upon my return?</p>
+
+        <h2 class="font-headline-sm text-headline-sm text-on-surface pt-6">Another Fire</h2>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">I had barely caught my breath in Agoura Hills when another evacuation warning flashed on my phone. The Kenneth fire was moving fast, and evacuation alerts began flooding in. Reports suggested it might have been arson. A cold wave of fear washed over me. "We are not safe. We are not safe," my mind screamed.</p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">The wind shifted again, sending the fire straight toward the very place I had just sought refuge. We had to evacuate. Again. It's a story many in LA share — fleeing danger multiple times, never knowing where you're truly safe.</p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">My cats cried in the backseat as I frantically tried to find somewhere else to go. Turning inward, I felt that home was the best choice, and I decided to return to Santa Monica. Though still dangerously close to the Pacific Palisades fires, my home was outside the evacuation zones. The drive back was terrifying. Black smoke clouds hung ominously over the freeway. After what felt like an endless journey, I finally made it home. I sealed the windows, taped up the doors, and hoped for the best. I was emotionally drained and physically exhausted, but I had made it through.</p>
+
+        <h2 class="font-headline-sm text-headline-sm text-on-surface pt-6">Returning Home to a Changed Reality</h2>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">Finally home, my cats were happy, and I collapsed into bed. The night was short, as a 4 a.m. evacuation warning triggered my phone, setting off all alarms. After some research, it turned out to be a false alarm, mistakenly sent to nearly 10 million residents across Los Angeles. My nervous system was scattered, and I felt the impact.</p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">The next morning, I was interviewed by Austrian television about my experience. I spoke about the fires, the overwhelming smoke, the chaos of evacuating, and the bittersweet relief of returning home.</p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">Unfortunately, I later learned that a member of my spiritual community had perished in the fire. Struggling with early dementia and mobility issues, she was unable to evacuate. The flames spread so rapidly that, in the desperate rush for safety, the most vulnerable were left behind. In moments of crisis, those who are most fragile — the elderly living alone, individuals with disabilities — are often overlooked. But true strength lies in protecting and standing by those who need us most.</p>
+
+        <h2 class="font-headline-sm text-headline-sm text-on-surface pt-6">Lessons Learned</h2>
+
+        <ul class="space-y-5 mt-2">
+          <li class="flex gap-4">
+            <span class="text-executive-gold font-label-caps text-label-caps mt-1 flex-shrink-0">01</span>
+            <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed"><strong class="text-on-surface font-semibold">We Are Called to Care for the Vulnerable.</strong> In moments of crisis, the most fragile among us — the elderly, individuals with disabilities, and pets — are often left behind. True strength is found in protecting and standing by those who need us most.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="text-executive-gold font-label-caps text-label-caps mt-1 flex-shrink-0">02</span>
+            <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed"><strong class="text-on-surface font-semibold">Trust Your Instincts.</strong> I listened to my inner wisdom and acted from clarity rather than fear. It helped me.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="text-executive-gold font-label-caps text-label-caps mt-1 flex-shrink-0">03</span>
+            <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed"><strong class="text-on-surface font-semibold">Community is Sacred.</strong> When the world burns around you, those who show up are your real family.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="text-executive-gold font-label-caps text-label-caps mt-1 flex-shrink-0">04</span>
+            <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed"><strong class="text-on-surface font-semibold">Prepare for the Unthinkable.</strong> Nature is unpredictable. We must adapt and be ready.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="text-executive-gold font-label-caps text-label-caps mt-1 flex-shrink-0">05</span>
+            <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed"><strong class="text-on-surface font-semibold">Crisis Reveals Truth.</strong> Some rise to help; others take advantage. Who we are in disaster defines us.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="text-executive-gold font-label-caps text-label-caps mt-1 flex-shrink-0">06</span>
+            <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed"><strong class="text-on-surface font-semibold">Material Possessions Mean Nothing.</strong> The only thing that mattered was my life, my pets, and my connection to others.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="text-executive-gold font-label-caps text-label-caps mt-1 flex-shrink-0">07</span>
+            <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed"><strong class="text-on-surface font-semibold">Climate Change is Now.</strong> This was not an isolated incident. Our choices matter.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="text-executive-gold font-label-caps text-label-caps mt-1 flex-shrink-0">08</span>
+            <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed"><strong class="text-on-surface font-semibold">Cherish the Present.</strong> Life can change in an instant. Every breath, every moment, is a gift.</p>
+          </li>
+          <li class="flex gap-4">
+            <span class="text-executive-gold font-label-caps text-label-caps mt-1 flex-shrink-0">09</span>
+            <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed"><strong class="text-on-surface font-semibold">I Am Unapologetically Me.</strong> This experience reaffirmed my truth — I will not shrink, I will not waver, I will own my space.</p>
+          </li>
+        </ul>
+
+        <h2 class="font-headline-sm text-headline-sm text-on-surface pt-6">Moving Forward</h2>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">It was surreal — standing by my window, looking at blue skies and palm trees while, just two miles away, a war-like zone raged. The contradiction was staggering. Safety is an illusion. Now, I pause more often, appreciating the simple act of breathing clean air, valuing my friends, and recognizing the fragility of what we take for granted.</p>
+
+        <p class="font-body-lg text-body-lg text-platinum-gray/80 leading-relaxed">More than ever, I am aware of the invisible threads that hold us together. Despite the devastation, kindness, love, and resilience emerged as the things that truly matter.</p>
+
+        <blockquote class="border-l-2 border-executive-gold pl-8 py-2 my-10">
+          <p class="font-headline-sm text-headline-sm text-on-surface italic leading-relaxed">Because in the end, what truly matters is not what we own, but who stands by us in the storm.</p>
+        </blockquote>
+
+      </div>
+    </div>
+  </article>
+
+  <!-- CTA Section -->
+  <section class="py-24 bg-deep-navy border-t border-subtle-slate/10">
+    <div class="max-w-container-max mx-auto px-margin-desktop text-center">
+      <h2 class="font-headline-md text-headline-md text-on-surface mb-6">Ready to see what shifts for you?</h2>
+      <p class="max-w-xl mx-auto text-platinum-gray/60 font-body-lg mb-10">Start with the individual A.T.T.U.N.E.™ diagnostic — a private PDF assessment across all six dimensions. No obligation.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="../index.html#framework" class="bg-executive-gold text-deep-navy px-10 py-4 font-label-md text-label-md hover:brightness-110 transition-all duration-200 inline-block">Get the Individual Diagnostic</a>
+        <button data-booking-trigger type="button" class="border border-subtle-slate/40 text-platinum-gray px-10 py-4 font-label-md text-label-md hover:bg-white/5 transition-all duration-200">Book an Intro Session</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bg-deep-navy border-t border-subtle-slate/20">
+  <div class="max-w-container-max mx-auto px-margin-desktop py-10 grid grid-cols-1 md:grid-cols-3 gap-gutter items-center">
+    <div class="flex flex-col items-center md:items-start">
+      <img src="https://images.cdn-files-a.com/uploads/8240325/400_filter_nobg_662521d99503b.png" alt="Better Together Group" class="h-10 w-auto"/>
+      <p class="text-platinum-gray/50 text-sm font-body-md mt-2">Where Strategy Meets Human Reality.</p>
+    </div>
+    <div class="flex flex-col md:flex-row justify-center gap-6 text-center">
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="https://attuneleadership.com?utm_source=btg-site&utm_medium=footer" target="_blank" rel="noopener noreferrer">ATTUNE Leadership</a>
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="../advisory.html">Contact</a>
+      <a class="text-platinum-gray/70 hover:text-executive-gold transition-colors font-label-caps text-label-caps" href="../privacy.html">Privacy Policy</a>
+    </div>
+    <div class="text-center md:text-right text-platinum-gray/40 font-body-md text-sm">© 2026 Better Together Group, LLC. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+</script>
+<script src="../booking-modal.js"></script>
+</body>
+</html>
