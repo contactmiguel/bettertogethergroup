@@ -211,7 +211,14 @@
       <a class="text-executive-gold border-b-2 border-executive-gold pb-1 font-label-md text-label-md transition-colors duration-300" href="about.html">About</a>
       <button data-booking-trigger type="button" class="bg-executive-gold text-deep-navy px-6 py-3 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200">Book an Intro Session</button>
     </div>
-    <button class="md:hidden text-executive-gold"><span class="material-symbols-outlined">menu</span></button>
+    <button id="mobile-menu-btn" class="md:hidden text-executive-gold" aria-label="Open menu" aria-expanded="false"><span class="material-symbols-outlined">menu</span></button>
+  </div>
+  <div id="mobile-menu" class="hidden bg-deep-navy border-t border-subtle-slate/20 py-6 flex flex-col gap-1 px-8">
+    <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300 py-3 border-b border-subtle-slate/10" href="advisory.html">Individual Advisory</a>
+    <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300 py-3 border-b border-subtle-slate/10" href="insights.html">Insights</a>
+    <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300 py-3 border-b border-subtle-slate/10" href="testimonials.html">Testimonials</a>
+    <a class="text-platinum-gray font-label-md text-label-md hover:text-executive-gold transition-colors duration-300 py-3" href="about.html">About</a>
+    <button data-booking-trigger type="button" class="mt-4 bg-executive-gold text-deep-navy px-6 py-3 font-label-md text-label-md cursor-pointer active:opacity-80 hover:brightness-110 transition-all duration-200 self-start">Book an Intro Session</button>
   </div>
 </nav>
 
@@ -389,6 +396,27 @@
       child.dataset.delay = i * 60;
     });
   });
+</script>
+<script>
+(function() {
+  var btn = document.getElementById('mobile-menu-btn');
+  var menu = document.getElementById('mobile-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function() {
+    var isNowHidden = menu.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!isNowHidden));
+    var icon = btn.querySelector('.material-symbols-outlined');
+    if (icon) icon.textContent = isNowHidden ? 'menu' : 'close';
+  });
+  menu.querySelectorAll('a, button').forEach(function(el) {
+    el.addEventListener('click', function() {
+      menu.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      var icon = btn.querySelector('.material-symbols-outlined');
+      if (icon) icon.textContent = 'menu';
+    });
+  });
+})();
 </script>
 <script src="/booking-modal.js"></script>
 </body>
